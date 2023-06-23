@@ -4,10 +4,10 @@ This repository contains the code of the Neuronal Spike Shapes (NSS), a straight
 
 NSS validation relies on two datasets of murine cortical interneurons:
 
-* _PatchSeqDataset_ leverages the patch-seq technique, that combines patch-clamp with single-cell RNA-Seq (scRNA-Seq) to collect EP and transcriptomic profiles of 4,200 mouse visual cortical GABAergic interneurons, reconstructing the morphological conformation of 517 of them (Gouwens, N.W., Sorensen, S.A., Berg, J. et al. Classification of electrophysiological and morphological neuron types in the mouse visual cortex. Nat Neurosci 22, 1182–1195 (2019), https://doi.org/10.1038/s41593-019-0417-0).
+* _PatchSeqDataset_ leverages the patch-seq technique, that combines patch-clamp with single-cell RNA-Seq (scRNA-Seq) to collect EP and transcriptomic profiles of 4,200 mouse visual cortical GABAergic interneurons, reconstructing the morphological conformation of 517 of them (Primary publication: Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, A., Lee, B. R., Jarsky, T., ... & Zeng, H. (2020). Integrated morphoelectric and transcriptomic classification of cortical GABAergic cells. Cell, 183(4), 935-953, https://doi.org/10.1016/j.cell.2020.09.057).
 
 
-* _PatchClampDataset_ provides EP data from 1,938 neurons of adult mouse visual cortical neurons and morphological reconstructions for 461 of them (Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, A., Lee, B. R., Jarsky, T., ... & Zeng, H. (2020). Integrated morphoelectric and transcriptomic classification of cortical GABAergic cells. Cell, 183(4), 935-953, https://doi.org/10.1016/j.cell.2020.09.057).
+* _PatchClampDataset_ provides EP data from 1,938 neurons of adult mouse visual cortical neurons and morphological reconstructions for 461 of them (Primary publication: Gouwens, N.W., Sorensen, S.A., Berg, J. et al. Classification of electrophysiological and morphological neuron types in the mouse visual cortex. Nat Neurosci 22, 1182–1195 (2019), https://doi.org/10.1038/s41593-019-0417-0).
 
 ## Release notes
 
@@ -70,7 +70,10 @@ Three files are required, and it is necessary to rename them and organize them i
 NSS/data/PatchSeqDataset/PatchSeq_EP_features.csv
 ```
 
-This file is generated with a custom script calling the DANDI (https://dandiarchive.org) APIs to access the DANDISET 000020 (https://dandiarchive.org/dandiset/000020/, also in https://github.com/dandisets/000020). This script leverages the `dandi-cli` tool (10.5281/zenodo.3692138) to access raw EP data for each cell and compute EP features.
+This file is generated with a custom script calling the DANDI (https://dandiarchive.org) APIs to access the DANDISET 000020 (https://doi.org/10.48324/dandi.000020/0.210913.1639). This script leverages the `dandi-cli` tool (10.5281/zenodo.3692138) to access raw EP data for each cell and compute EP features.
+
+Credits:  Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://dandiarchive.org/dandiset/000020/ and https://github.com/dandisets/000020.
+Primary publication: Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, A., Lee, B. R., Jarsky, T., ... & Zeng, H. (2020). Integrated morphoelectric and transcriptomic classification of cortical GABAergic cells. Cell, 183(4), 935-953, https://doi.org/10.1016/j.cell.2020.09.057.
 
 * The file reporting the metadata of the dataset, connecting EP and transcriptomic IDs of cells: 
 
@@ -80,13 +83,20 @@ NSS/data/PatchSeqDataset/PatchSeq_metadata.csv
 
 This file can be downloaded at https://brainmapportal-live-4cc80a57cd6e400d854-f7fdcae.divio-media.net/filer_public/5e/2a/5e2a5936-61da-4e09-b6da-74ab97ce1b02/20200711_patchseq_metadata_mouse.csv. 
 
+Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://doi.org/10.1016/j.cell.2020.09.057 (STAR Methods section).
+Primary publication: Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, A., Lee, B. R., Jarsky, T., ... & Zeng, H. (2020). Integrated morphoelectric and transcriptomic classification of cortical GABAergic cells. Cell, 183(4), 935-953, https://doi.org/10.1016/j.cell.2020.09.057.
+
+
 * The file reporting the scRNA-seq counts, measuring gene expression and supporting transcriptomic analysis: 
 
 ```
 NSS/data/PatchSeqDataset/count.csv
 ```
 
-This file can be downloaded and extracted from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/20200513_Mouse_PatchSeq_Release_count.v2.csv.tar. 
+This file can be downloaded and extracted from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/20200513_Mouse_PatchSeq_Release_count.v2.csv.tar.
+
+Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/.
+Primary publication: Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, A., Lee, B. R., Jarsky, T., ... & Zeng, H. (2020). Integrated morphoelectric and transcriptomic classification of cortical GABAergic cells. Cell, 183(4), 935-953, https://doi.org/10.1016/j.cell.2020.09.057.
 
 **Soft Validation**: A EP and cell-type-based joint analysis over _PatchClampDataset_ 
 
@@ -95,20 +105,25 @@ Two files are required, and it is necessary to rename them and organize them in 
 * The file reporting the EP features of all cells in the dataset and supporting EP analysis:
 
 ```
-NSS/data/PatchClampDataset/PatchSeq_EP_features.csv
+NSS/data/PatchClampDataset/PatchClamp_EP_features.csv
 ```
 
-This file is generated with a custom script calling the Allen SDK (http://alleninstitute.github.io/AllenSDK/) APIs to access the Cell Types Database (http://alleninstitute.github.io/AllenSDK/cell_types.html#). This script leverages the `get_ephys_features` method (see http://alleninstitute.github.io/AllenSDK/allensdk.html and http://alleninstitute.github.io/AllenSDK/_static/examples/nb/cell_types.html#Cell-Types-Database) to access precumputed EP features for each cell.
+This file is generated with a custom script calling the Allen SDK APIs and using the IPFX library to access precumputed EP features for each cell in the Cell Types Database.
+
+Credits:  Allen Institute for Brain Science (2023). Allen SDK. Available from https://github.com/alleninstitute/allensdk. Allen Institute for Brain Science (2023). IPFX. Available from https://github.com/alleninstitute/ipfx.
+Primary publication: Gouwens, N.W., Sorensen, S.A., Berg, J. et al. Classification of electrophysiological and morphological neuron types in the mouse visual cortex. Nat Neurosci 22, 1182–1195 (2019), https://doi.org/10.1038/s41593-019-0417-0.
+
 
 * The file reporting the metadata of the dataset, including CRE cell lines-based cell type labels of cells: 
 
 ```
-NSS/data/PatchClampDataset/PatchSeq_metadata.csv
+NSS/data/PatchClampDataset/PatchClamp_metadata.csv
 ```
 
 This file can be downloaded at http://celltypes.brain-map.org/cell_types_specimen_details.csv. 
 
-
+Credits:  Allen Institute for Brain Science (2023). Cell Types dataset. Available from http://celltypes.brain-map.org/data (DOWNLOAD CELL FEATURE DATA button).
+Primary publication: Gouwens, N.W., Sorensen, S.A., Berg, J. et al. Classification of electrophysiological and morphological neuron types in the mouse visual cortex. Nat Neurosci 22, 1182–1195 (2019), https://doi.org/10.1038/s41593-019-0417-0.
 
 ### Reproducing the analysis using the NSS Singularity container
 
@@ -173,13 +188,14 @@ This will leverage files in `data/PatchClampDataset/` to generate NSS clustering
 |
 ├── data                                                                                // Data files
 |    ├── PatchSeqDataset                                                      // Data files for the PatchSeqDataset
-|    |    ├── PatchSeq_EP_features.csv                                       // EP features file for EP analysis of the PatchSeqDataset
-|    |    ├── PatchSeq_metadata.csv                                       // metadata file for EP analysis of the PatchSeqDataset
-|    |    └── count.csv                                       // scRNA-seq data for transcriptomic analysis of the PatchSeqDataset
+|    |    ├── PatchSeq_EP_features.csv                                       // EP features file for EP analysis of the PatchSeqDataset (Credits:  Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://dandiarchive.org/dandiset/000020/ and https://github.com/dandisets/000020.)
+|    |    ├── PatchSeq_metadata.csv                                       // metadata file for EP analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://doi.org/10.1016/j.cell.2020.09.057 (STAR Methods section).
+)
+|    |    └── count.csv                                       // scRNA-seq data for transcriptomic analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/.)
 |    | 
 |    └── PatchClampDataset                                                      // Data files for the PatchClampDataset
-|         ├── PatchClamp_EP_features.csv                                       // EP features file for the PatchClampDataset
-|         └── PatchClamp_metadata.csv                                       // metadata file for the PatchClampDataset, including cell lines based cell type labels for cell types analysis of PatchClampDataset
+|         ├── PatchClamp_EP_features.csv                                       // EP features file for the PatchClampDataset (Credits:  Allen Institute for Brain Science (2023). Allen SDK. Available from https://github.com/alleninstitute/allensdk. Allen Institute for Brain Science (2023). IPFX. Available from https://github.com/alleninstitute/ipfx.)
+|         └── PatchClamp_metadata.csv                                       // metadata file for the PatchClampDataset, including cell lines based cell type labels for cell types analysis of PatchClampDataset (Credits:  Allen Institute for Brain Science (2023). Cell Types dataset. Available from http://celltypes.brain-map.org/data - DOWNLOAD CELL FEATURE DATA button.)
 |    
 |   
 ├── source                                                                                // Scripts for EP, transcriptomic and cellTypes analyses
