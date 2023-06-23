@@ -17,12 +17,6 @@ BiocManager::install(c('BiocGenerics', 'DelayedArray', 'DelayedMatrixStats',
                        'SummarizedExperiment', 'batchelor', 'Matrix.utils',
                        'HDF5Array', 'terra', 'ggrastr'))
 
-
-
-if (!requireNamespace("devtools", quietly = TRUE))
-  install.packages("devtools", dependencies = c("Depends"))
-devtools::install_github('cole-trapnell-lab/monocle3')
-
 BiocManager::install(c("Gviz", "GenomicRanges", "rtracklayer"))
 devtools::install_github("cole-trapnell-lab/cicero-release", ref = "monocle3")
 
@@ -117,6 +111,7 @@ if (!(dir.exists("../output/PatchSeqDataset/GO_enrichment_analysis"))){
     dir.create("../output/PatchSeqDataset/GO_enrichment_analysis")
 }
 #########
+#TODO rendere i commenti alle varie sezioni più specifici, nel senso: quali label? quali metadata? quali data? DE su cosa? etc
 
 # Load the data and preprocess
 Patch_seq <- read.csv("../data/PatchSeqDataset/count.csv", header=FALSE, row.names=1)
@@ -137,7 +132,7 @@ t_labels$transcriptomics_sample_id <- gsub("-",".", t_labels$transcriptomics_sam
 t_labels <- t_labels[t_labels$transcriptomics_sample_id %in% colnames(Patch_seq_sub),]
 t_labels <- t_labels[match(colnames(Patch_seq_sub), t_labels$transcriptomics_sample_id),]
 t_labels_p <- separate(t_labels, col = T.type.Label, into = c("type" , "subtype1", "subtype2" ), sep = " ")
-t_labels_p <- unite(t_labels_p, type, subtype1, col = "subtype_name", sep = " ", remove = FALSE)
+t_labels_p <- unite(t_labels_p, type, subtype1, sep = " ",col = "subtype_name", remove = FALSE)
 
 Patch_seq_sub <- subset(Patch_seq_S, cells = t_labels$transcriptomics_sample_id)
 
@@ -260,6 +255,7 @@ write.csv(EC0_vs_EC1_P, file = "../output/PatchSeqDataset/GO_enrichment_analysis
 
 EC1_vs_EC2 <- FindMarkers(Patch_seq_sub_fs, ident.1 = "EC1", ident.2 = "EC2")
 EC1_vs_EC2$gene <- rownames(EC1_vs_EC2)
+EC1_vs_EC2_P <- EC1_vs_EC2 %>% filter(avg_log2FC > 0)
 
 EC0_vs_EC2 <- FindMarkers(Patch_seq_sub_fs, ident.1 = "EC0", ident.2 = "EC2")
 EC0_vs_EC2$gene <- rownames(EC0_vs_EC2)
