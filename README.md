@@ -1,8 +1,10 @@
 # Neuronal Spike Shapes (NSS)
 
-This repository contains the code of the Neuronal Spike Shapes (NSS), a straightforward approach for analyzing the electrophysiological profiles of cells based on their Action Potential (AP) waveforms. The NSS method holds the potential to effectively explore the heterogeneity of cell types and states by summarizing the AP waveform into a triangular representation complemented by a set of derived electrophysiological (EP) features.
+This repository contains the code of the Neuronal Spike Shapes (NSS), a simple approach for analyzing the electrophysiological profiles of cells based on their Action Potential (AP) waveforms.
 
-NSS validation relies on two datasets of murine cortical interneurons:
+The NSS method aims to explore the heterogeneity of cell types and states by summarizing the AP waveform into a triangular representation complemented by a set of derived electrophysiological (EP) features.
+
+NSS validation relies on two datasets of murine cortical interneurons.
 
 * _PatchSeqDataset_ leverages the patch-seq technique, that combines patch-clamp with single-cell RNA-Seq (scRNA-Seq) to collect EP and transcriptomic profiles of 4,200 mouse visual cortical GABAergic interneurons, reconstructing the morphological conformation of 517 of them (Primary publication: Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, A., Lee, B. R., Jarsky, T., ... & Zeng, H. (2020). Integrated morphoelectric and transcriptomic classification of cortical GABAergic cells. Cell, 183(4), 935-953, https://doi.org/10.1016/j.cell.2020.09.057).
 
