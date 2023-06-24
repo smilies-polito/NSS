@@ -180,92 +180,92 @@ This script leverages files in `data/PatchClampDataset/` to generate NSS cluster
 |
 ├── data                                      // Data files
 |    ├── PatchSeqDataset                          // Data files for the PatchSeqDataset
-|    |    ├── PatchSeq_EP_features.csv            // EP features file for EP analysis of the PatchSeqDataset (Credits:  Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://dandiarchive.org/dandiset/000020/ and https://github.com/dandisets/000020.)
-|    |    ├── PatchSeq_metadata.csv            // metadata file for EP analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://doi.org/10.1016/j.cell.2020.09.057 (STAR Methods section).
+|    |    ├── PatchSeq_EP_features.csv                          // EP features file for EP analysis of the PatchSeqDataset (Credits:  Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://dandiarchive.org/dandiset/000020/ and https://github.com/dandisets/000020.)
+|    |    ├── PatchSeq_metadata.csv                          // metadata file for EP analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://doi.org/10.1016/j.cell.2020.09.057 (STAR Methods section).
 )
-|    |    └── count.csv            // scRNA-seq data for transcriptomic analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/.)
+|    |    └── count.csv                          // scRNA-seq data for transcriptomic analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/.)
 |    | 
 |    └── PatchClampDataset                          // Data files for the PatchClampDataset
-|         ├── PatchClamp_EP_features.csv            // EP features file for the PatchClampDataset (Credits:  Allen Institute for Brain Science (2023). Allen SDK. Available from https://github.com/alleninstitute/allensdk. Allen Institute for Brain Science (2023). IPFX. Available from https://github.com/alleninstitute/ipfx.)
-|         └── PatchClamp_metadata.csv            // metadata file for the PatchClampDataset, including cell lines based cell type labels for cell types analysis of PatchClampDataset (Credits:  Allen Institute for Brain Science (2023). Cell Types dataset. Available from http://celltypes.brain-map.org/data - DOWNLOAD CELL FEATURE DATA button.)
+|         ├── PatchClamp_EP_features.csv                          // EP features file for the PatchClampDataset (Credits:  Allen Institute for Brain Science (2023). Allen SDK. Available from https://github.com/alleninstitute/allensdk. Allen Institute for Brain Science (2023). IPFX. Available from https://github.com/alleninstitute/ipfx.)
+|         └── PatchClamp_metadata.csv                          // metadata file for the PatchClampDataset, including cell lines based cell type labels for cell types analysis of PatchClampDataset (Credits:  Allen Institute for Brain Science (2023). Cell Types dataset. Available from http://celltypes.brain-map.org/data - DOWNLOAD CELL FEATURE DATA button.)
 |    
 |   
 ├── source                                      // Scripts for EP, transcriptomic and cellTypes analyses
-|    ├── EP_analysis.py                    // Python script for EP analysis
-|    ├── cell_lines_types_analysis.py                    // Python script for cell lines-based cell type labels analysis
-|    ├── transcriptomic_analysis.R                    // R script for transcriptomic analysis
-|    ├── GO_enrichment_analysis.R                    // R script for cell types analysis
-|    └── NSS.def                    // NSS Singularity recipe
+|    ├── EP_analysis.py                          // Python script for EP analysis
+|    ├── cell_lines_types_analysis.py                          // Python script for cell lines-based cell type labels analysis
+|    ├── transcriptomic_analysis.R                          // R script for transcriptomic analysis
+|    ├── GO_enrichment_analysis.R                          // R script for cell types analysis
+|    └── NSS.def                          // NSS Singularity recipe
 
 │
 ├── output                                      // Output of the NSS analysis
 |    ├── PatchSeqDataset                    // Output files and images for the PatchSeqDataset
-|    |    ├── NSS_clusters            // Files linking cell IDs and NSS clustering labels
-|    |    |    ├── NSS_clusters_k3.csv            // File linking cell IDs and NSS clustering labels for k=3 clustering
-|    |    |    └── NSS_clusters_k2.csv            // File linking cell IDs and NSS clustering labels for k=2 clustering
+|    |    ├── NSS_clusters                          // Files linking cell IDs and NSS clustering labels
+|    |    |    ├── NSS_clusters_k3.csv                          // File linking cell IDs and NSS clustering labels for k=3 clustering
+|    |    |    └── NSS_clusters_k2.csv                          // File linking cell IDs and NSS clustering labels for k=2 clustering
 |    |    |
-|    |    ├──  GO_enrichment_analysis            // Files supporting the gene ontology enrichment analysis
-|    |    |    ├── NSS_cluster0_k3_DE_genes.csv            // list of DE genes in NSS cluster EC0 (k=3) from the whole dataset for gene-ontology enrichment analysis
-|    |    |    ├── enrichment_cellular.csv            // data for gene-ontology enrichment analysis images (downloaded from http://bioinformatics.sdstate.edu/go/, GO Cellular Component)
-|    |    |    ├── enrichment_molecular.csv            // data for gene-ontology enrichment analysis images (downloaded from http://bioinformatics.sdstate.edu/go/, GO Molecular Function)
-|    |    |    └── enrichment_biological.csv            // data for gene-ontology enrichment analysis images (downloaded from http://bioinformatics.sdstate.edu/go/, GO Biological Process)
+|    |    ├──  GO_enrichment_analysis                          // Files supporting the gene ontology enrichment analysis
+|    |    |    ├── NSS_cluster0_k3_DE_genes.csv                          // list of DE genes in NSS cluster EC0 (k=3) from the whole dataset for gene-ontology enrichment analysis
+|    |    |    ├── enrichment_cellular.csv                          // data for gene-ontology enrichment analysis images (downloaded from http://bioinformatics.sdstate.edu/go/, GO Cellular Component)
+|    |    |    ├── enrichment_molecular.csv                          // data for gene-ontology enrichment analysis images (downloaded from http://bioinformatics.sdstate.edu/go/, GO Molecular Function)
+|    |    |    └── enrichment_biological.csv                          // data for gene-ontology enrichment analysis images (downloaded from http://bioinformatics.sdstate.edu/go/, GO Biological Process)
 |    |    |
-|    |    ├── MISC            // miscellaneous files supporting intermediate analysis steps
+|    |    ├── MISC                          // miscellaneous files supporting intermediate analysis steps
 |    |    |    └── ...                                       
 |    |    |
-|    |    └── IMAGES            // Images generated by the analysis 
-|    |         ├── histograms_feature_distributions_slope_deep.png            // Slope_deep feature distribution histograms (Figure 4, top left)
-|    |         ├── histograms_feature_distributions_dv_ratio.png            // dv_ratio feature distribution histograms (Figure 4, top right)
-|    |         ├── histograms_feature_distributions_up_down_ratio.png            // UpDown_ratio feature distribution histograms (Figure 4, bottom left)
-|    |         ├── histograms_feature_distributions_dv_deep.png            // dv_deep feature distribution histograms (Figure 4, bottom right)
+|    |    └── IMAGES                          // Images generated by the analysis 
+|    |         ├── histograms_feature_distributions_slope_deep.png                          // Slope_deep feature distribution histograms (Figure 4, top left)
+|    |         ├── histograms_feature_distributions_dv_ratio.png                          // dv_ratio feature distribution histograms (Figure 4, top right)
+|    |         ├── histograms_feature_distributions_up_down_ratio.png                          // UpDown_ratio feature distribution histograms (Figure 4, bottom left)
+|    |         ├── histograms_feature_distributions_dv_deep.png                          // dv_deep feature distribution histograms (Figure 4, bottom right)
 |    |         ├── silhouette.png      // Silhouette plot for the identification of optimal number of clusters (Figure 5)
-|    |         ├── NSS_embedding_NSS_clusters_k3.html            // Interactive file showing NSS labels on NSS embedding for k=2 (Figure 6, left)
-|    |         ├── NSS_embedding_NSS_clusters_k2.html            // Interactive file showing NSS labels on NSS embedding for k=3 (Figure 6, right)
-|    |         ├── correlation_matrix_k2.png            // Spearman’s correlation matrix of NSS features to clustering label for k=2 (Figure 7, top)
-|    |         ├── correlation_matrix_k3.png            // Spearman’s correlation matrix of NSS features to clustering label for k=3 (Figure 7, bottom)
-|    |         ├── KDE_plot_k2_slope_deep.png            // KDE plots of the distribution of features slope_deep for k=2 (Figure 8, bottom left)
-|    |         ├── KDE_plot_k2_dv_ratio.png            // KDE plots of the distribution of features slope_deep and dv_ratio for k=2 (Figure 8, bottom right)
-|    |         ├── KDE_plot_k3_slope_deep.png            // KDE plots of the distribution of features slope_deep for k=3 (Figure 8, top left)
-|    |         ├── KDE_plot_k3_dv_ratio.png            // KDE plots of the distribution of features slope_deep and dv_ratio for k=3 (Figure 8, top right)
-|    |         ├── bar_plots_mean_accuracy_decrease.png            //  Mean accuracy decrease in the cluster label prediction done by RF model when shuffling values of NSS feature (Figure 9)
-|    |         ├── transcriptomic_embedding_marker_expression.pdf            // Cell type markers expression levels on transcriptomic embedding (Figure 11)
-|    |         ├── transcriptomic_embedding_transcriptomic_labels.pdf            // Transcriptional labels provided by PatchSeqDataset metadata on transcriptomic embedding (Figure 12)
-|    |         ├── transcriptomic_embedding_NSS_labels_k3.pdf            // NSS labels on transcriptomic embedding for k=2 (Figure 13, left)
-|    |         ├── transcriptomic_embedding_NSS_labels_k2.pdf            // NSS labels on transcriptomic embedding for k=2 (Figure 13, right)
-|    |         ├── transcriptomic_embedding_transcriptomic_labels_Sst_subset.pdf            // Transcriptional labels provided by PatchSeqDataset metadata on transcriptomic embedding of the Sst subset (Figure 14, left)
-|    |         ├── transcriptomic_embedding_NSS_labels_k3_Sst_subset.pdf            // NSS labels for k=3 on transcriptomic embedding of the Sst subset (Figure 14, right)
-|    |         ├── GO_biological_plot.pdf            // Gene ontology enrichment analysis plot (downloaded from http://bioinformatics.sdstate.edu/go/, GO Biological Process) (Figure 15, top)
-|    |         ├── GO_molecular_plot.pdf            // Gene ontology enrichment analysis plot (downloaded from http://bioinformatics.sdstate.edu/go/, GO Molecular Function) (Figure 15, middle)
-|    |         ├── GO_cellular_plot.pdf            // Gene ontology enrichment analysis plot (downloaded from http://bioinformatics.sdstate.edu/go/, GO Cellular Component) (Figure 15, bottom)
-|    |         ├── transcriptomic_Kcnc2_violin_plot.pdf            // Violin plots showing the Kcnc2 gene expression levels distributions across cells in each NSS cluster with k=3 (Figure 16, third row)
-|    |         └── transcriptomic_Kcnn2_violin_plot.pdf            // Violin plots showing the Kcnn2 gene expression levels distributions across cells in each NSS cluster with k=3 (Figure 16, fourth row)
+|    |         ├── NSS_embedding_NSS_clusters_k3.html                          // Interactive file showing NSS labels on NSS embedding for k=2 (Figure 6, left)
+|    |         ├── NSS_embedding_NSS_clusters_k2.html                          // Interactive file showing NSS labels on NSS embedding for k=3 (Figure 6, right)
+|    |         ├── correlation_matrix_k2.png                          // Spearman’s correlation matrix of NSS features to clustering label for k=2 (Figure 7, top)
+|    |         ├── correlation_matrix_k3.png                          // Spearman’s correlation matrix of NSS features to clustering label for k=3 (Figure 7, bottom)
+|    |         ├── KDE_plot_k2_slope_deep.png                          // KDE plots of the distribution of features slope_deep for k=2 (Figure 8, bottom left)
+|    |         ├── KDE_plot_k2_dv_ratio.png                          // KDE plots of the distribution of features slope_deep and dv_ratio for k=2 (Figure 8, bottom right)
+|    |         ├── KDE_plot_k3_slope_deep.png                          // KDE plots of the distribution of features slope_deep for k=3 (Figure 8, top left)
+|    |         ├── KDE_plot_k3_dv_ratio.png                          // KDE plots of the distribution of features slope_deep and dv_ratio for k=3 (Figure 8, top right)
+|    |         ├── bar_plots_mean_accuracy_decrease.png                          //  Mean accuracy decrease in the cluster label prediction done by RF model when shuffling values of NSS feature (Figure 9)
+|    |         ├── transcriptomic_embedding_marker_expression.pdf                          // Cell type markers expression levels on transcriptomic embedding (Figure 11)
+|    |         ├── transcriptomic_embedding_transcriptomic_labels.pdf                          // Transcriptional labels provided by PatchSeqDataset metadata on transcriptomic embedding (Figure 12)
+|    |         ├── transcriptomic_embedding_NSS_labels_k3.pdf                          // NSS labels on transcriptomic embedding for k=2 (Figure 13, left)
+|    |         ├── transcriptomic_embedding_NSS_labels_k2.pdf                          // NSS labels on transcriptomic embedding for k=2 (Figure 13, right)
+|    |         ├── transcriptomic_embedding_transcriptomic_labels_Sst_subset.pdf                          // Transcriptional labels provided by PatchSeqDataset metadata on transcriptomic embedding of the Sst subset (Figure 14, left)
+|    |         ├── transcriptomic_embedding_NSS_labels_k3_Sst_subset.pdf                          // NSS labels for k=3 on transcriptomic embedding of the Sst subset (Figure 14, right)
+|    |         ├── GO_biological_plot.pdf                          // Gene ontology enrichment analysis plot (downloaded from http://bioinformatics.sdstate.edu/go/, GO Biological Process) (Figure 15, top)
+|    |         ├── GO_molecular_plot.pdf                          // Gene ontology enrichment analysis plot (downloaded from http://bioinformatics.sdstate.edu/go/, GO Molecular Function) (Figure 15, middle)
+|    |         ├── GO_cellular_plot.pdf                          // Gene ontology enrichment analysis plot (downloaded from http://bioinformatics.sdstate.edu/go/, GO Cellular Component) (Figure 15, bottom)
+|    |         ├── transcriptomic_Kcnc2_violin_plot.pdf                          // Violin plots showing the Kcnc2 gene expression levels distributions across cells in each NSS cluster with k=3 (Figure 16, third row)
+|    |         └── transcriptomic_Kcnn2_violin_plot.pdf                          // Violin plots showing the Kcnn2 gene expression levels distributions across cells in each NSS cluster with k=3 (Figure 16, fourth row)
 |    |
 |    |    
-|    └── PatchClampDataset                    // Output files and images for the PatchClampDataset
-|         ├── NSS_clusters            // Files linking cell IDs and NSS clustering labels
-|         |    ├── NSS_clusters_k3.csv            // File linking cell IDs and NSS clustering labels for k=3 clustering
-|         |    └── NSS_clusters_k2.csv            // File linking cell IDs and NSS clustering labels for k=2 clustering
+|    └── PatchClampDataset                          // Output files and images for the PatchClampDataset
+|         ├── NSS_clusters                          // Files linking cell IDs and NSS clustering labels
+|         |    ├── NSS_clusters_k3.csv                          // File linking cell IDs and NSS clustering labels for k=3 clustering
+|         |    └── NSS_clusters_k2.csv                          // File linking cell IDs and NSS clustering labels for k=2 clustering
 |         |
-|         ├── cre_lines_clusters            // Files linking cell IDs and Cre lines-based cell types labels
-|         |    ├── lines_k2_cl0.csv            // File linking cell IDs and Cre lines-based cell types labels for NSS cluster EC0 with k=2
-|         |    ├── lines_k2_cl1.csv            // File linking cell IDs and Cre lines-based cell types labels for NSS cluster EC1 with k=2
-|         |    ├── lines_k3_cl0.csv            // File linking cell IDs and Cre lines-based cell types labels for NSS cluster EC0 with k=3
-|         |    ├── lines_k3_cl1.csv            // File linking cell IDs and Cre lines-based cell types labels for NSS cluster EC1 with k=3
-|         |    └── lines_k3_cl2.csv            // File linking cell IDs and Cre lines-based cell types labels for NSS cluster EC2 with k=3
+|         ├── cre_lines_clusters                          // Files linking cell IDs and Cre lines-based cell types labels
+|         |    ├── lines_k2_cl0.csv                          // File linking cell IDs and Cre lines-based cell types labels for NSS cluster EC0 with k=2
+|         |    ├── lines_k2_cl1.csv                          // File linking cell IDs and Cre lines-based cell types labels for NSS cluster EC1 with k=2
+|         |    ├── lines_k3_cl0.csv                          // File linking cell IDs and Cre lines-based cell types labels for NSS cluster EC0 with k=3
+|         |    ├── lines_k3_cl1.csv                          // File linking cell IDs and Cre lines-based cell types labels for NSS cluster EC1 with k=3
+|         |    └── lines_k3_cl2.csv                          // File linking cell IDs and Cre lines-based cell types labels for NSS cluster EC2 with k=3
 |         |
-|         ├── MISC            // miscellaneous files supporting intermediate analysis steps
-|         |    ├── feature_analysis.csv            // File supporting feature analysis
-|         |    ├── cell_lines_types.csv            // File supporting Cre lines-based cell types analysis
-|         |    ├── lines_k2_cl0_type.csv            // File supporting Cre lines-based cell types analysis for NSS cluster EC0 with k=2
-|         |    ├── lines_k2_cl1_type.csv            // File supporting Cre lines-based cell types analysis for NSS cluster EC1 with k=2
-|         |    ├── lines_k3_cl0_type.csv            // File supporting Cre lines-based cell types analysis for NSS cluster EC0 with k=3
-|         |    ├── lines_k3_cl1_type.csv            // File supporting Cre lines-based cell types analysis for NSS cluster EC1 with k=3
-|         |    └── lines_k3_cl2_type.csv            // File supporting Cre lines-based cell types analysis for NSS cluster EC2 with k=3
+|         ├── MISC                          // miscellaneous files supporting intermediate analysis steps
+|         |    ├── feature_analysis.csv                          // File supporting feature analysis
+|         |    ├── cell_lines_types.csv                          // File supporting Cre lines-based cell types analysis
+|         |    ├── lines_k2_cl0_type.csv                          // File supporting Cre lines-based cell types analysis for NSS cluster EC0 with k=2
+|         |    ├── lines_k2_cl1_type.csv                          // File supporting Cre lines-based cell types analysis for NSS cluster EC1 with k=2
+|         |    ├── lines_k3_cl0_type.csv                          // File supporting Cre lines-based cell types analysis for NSS cluster EC0 with k=3
+|         |    ├── lines_k3_cl1_type.csv                          // File supporting Cre lines-based cell types analysis for NSS cluster EC1 with k=3
+|         |    └── lines_k3_cl2_type.csv                          // File supporting Cre lines-based cell types analysis for NSS cluster EC2 with k=3
 |         |
-|         └── IMAGES            // Images generated by the analysis 
-|              ├── NSS_embedding_cell_lines_types_labels.html            // Interactive file showing Transcriptional labels provided by PatchSeqDataset metadata on NSS embedding (Figure 17, top center)
-|              ├── NSS_embedding_NSS_clusters_k3.html            // Interactive file showing NSS labels on NSS embedding for k=3 (Figure 17, bottom left)
-|              └── NSS_embedding_NSS_clusters_k2.html            // Interactive file showing NSS labels on NSS embedding for k=2 (Figure 17, bottom right)
+|         └── IMAGES                          // Images generated by the analysis 
+|              ├── NSS_embedding_cell_lines_types_labels.html                          // Interactive file showing Transcriptional labels provided by PatchSeqDataset metadata on NSS embedding (Figure 17, top center)
+|              ├── NSS_embedding_NSS_clusters_k3.html                          // Interactive file showing NSS labels on NSS embedding for k=3 (Figure 17, bottom left)
+|              └── NSS_embedding_NSS_clusters_k2.html                          // Interactive file showing NSS labels on NSS embedding for k=2 (Figure 17, bottom right)
 |
 |    
 └── README.md                                      // This README file          
