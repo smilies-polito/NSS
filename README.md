@@ -182,7 +182,6 @@ This script leverages files in `data/PatchClampDataset/` to generate NSS cluster
 |    ├── PatchSeqDataset                          // Data files for the PatchSeqDataset
 |    |    ├── PatchSeq_EP_features.csv                          // EP features file for EP analysis of the PatchSeqDataset (Credits:  Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://dandiarchive.org/dandiset/000020/ and https://github.com/dandisets/000020.)
 |    |    ├── PatchSeq_metadata.csv                          // metadata file for EP analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://doi.org/10.1016/j.cell.2020.09.057 (STAR Methods section).
-)
 |    |    └── count.csv                          // scRNA-seq data for transcriptomic analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/.)
 |    | 
 |    └── PatchClampDataset                          // Data files for the PatchClampDataset
