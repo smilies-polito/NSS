@@ -14,6 +14,8 @@ Stage: build
     apt-get install -y --no-install-recommends apt-utils wget
     apt-get upgrade -y
     
+    
+    
     # set R 4.0 mirror
     # install two helper packages we need
     
@@ -27,12 +29,6 @@ Stage: build
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 51716619E084DAB9
     wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
     
-    
-    # collect Matrix.utils package that was dismissed in R > 4 but it is necessary for monocle3
-    
-    wget https://cran.r-project.org/src/contrib/Archive/Matrix.utils/Matrix.utils_0.9.8.tar.gz
-    
-    
     # add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed
     
     add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
@@ -42,48 +38,29 @@ Stage: build
     
     add-apt-repository ppa:c2d4u.team/c2d4u4.0+
 
-    apt-get update
-    
-    apt-get install -y r-cran-rstan
+    apt-get update -y
     
     
     # Install R, Python, misc. utilities
     
-    apt-get install -f -y r-cran-devtools
-    apt-get -y install build-essential cmake binutils libcairo2-dev libxt-dev libgdal-dev libxml2-dev libssl-dev libtiff-dev libcurl4-openssl-dev libgit2-dev
-    #apt-get -y build-dep libcurl4-gnutls-dev
-    apt-get -y install libcurl4-gnutls-dev
     apt-get install -y r-base r-base-core r-recommended r-base-dev 
     apt-get install -y python3 python3-pip python3-dev
+    
+    #install required packages to support R packages configuration
+    
+    apt-get install -y libxml2-dev libfontconfig1-dev libssl-dev libudunits2-dev libmariadbclient-dev libmariadb-client-lgpl-dev-compat libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
 
 
     # Install required R packages
     
-    # Install Matrix.utils package that was dismissed in R > 4 but it is necessary for monocle3
-    
-    R --slave -e 'install.packages("Matrix.utils_0.9.8.tgz", repos = NULL, type="source")'
-    
     R --slave -e 'install.packages("BiocManager", repos="https:/cloud.r-project.org")'
     R --slave -e 'BiocManager::install(version = "3.17")'
-    
-    R --slave -e 'BiocManager::install(c("BiocGenerics", "DelayedArray", "DelayedMatrixStats", "limma", "lme4", "S4Vectors", "SingleCellExperiment", "SummarizedExperiment", "batchelor", "HDF5Array", "terra", "ggrastr"), type="source", dependencies = c("Depends"))'
-    
-    R --slave -e 'BiocManager::install(c("ggrastr", "spdep"), type="source", dependencies = c("Depends"))'
-    
-    R --slave -e 'install.packages(c("devtools"), type="source", dependencies = c("Depends"))'
-    
-    R --slave -e 'devtools::install_github("cole-trapnell-lab/monocle3")'
 
-    #R --slave -e 'BiocManager::install(c("Gviz", "GenomicRanges", "rtracklayer", type="source", dependencies = c("Depends"))'
-    #R --slave -e 'devtools::install_github("cole-trapnell-lab/cicero-release", ref = "monocle3")'
+    R --slave -e 'install.packages(c("data.table", "readsparse", "aricode", "dplyr", "tidyr", "ggplot2", "stringr", "patchwork"), type="source", dependencies = TRUE)'
+    
+    R --slave -e 'BiocManager::install("Seurat", type="source", dependencies = TRUE)'
 
-    #R --slave -e 'install.packages(c("aricode", "Seurat", "Signac", "readsparse", "leiden", "hdf5r", "cellranger", "sctransform", "GenomeInfoDb", "R.utils", "testthis", "data.table", "readxl", "class", "tidyverse"), type="source", dependencies = c("Depends"))'
-    
-    #R --slave -e 'BiocManager::install()'
-    #R --slave -e 'BiocManager::install("multtest", type="source", dependencies = c("Depends"))'
 
-    
-    
     apt-get clean
 
     
