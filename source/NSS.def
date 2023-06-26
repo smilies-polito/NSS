@@ -71,7 +71,7 @@ Stage: build
 %runscript
     
     
-    if [ $1 = 'HardValidation' ]
+    if [ $1 == 'HardValidation' ]
     then    
         echo "Performing hard validation on PatchSeqDataset with NSS clustering cardinality k=2..."
         echo "Starting EP analysis..."
@@ -88,7 +88,7 @@ Stage: build
         Rscript GO_analysis.r
     fi
     
-    if [ $1 = 'SoftValidation' ]
+    if [ $1 == 'SoftValidation' ]
     then    
         echo "Performing soft validation on PatchClampDataset with NSS clustering cardinality k=2..."
         echo "Starting analysis..."
