@@ -147,16 +147,15 @@ if (K==2){
 
 Idents(Patch_seq_sub_fs) <- "T_labels_main"
 
-# for simplifying the visualization, "Serpinf1", "Sncg" and "Meis2" were labeled as "Vip"
-# uncomment the following line to plot higher-resolution cell type labels:
-# new.cluster.ids <- c("Lamp5", "Sst", "Vip", "Pvalb", "Serpinf1", "Sncg", "Meis2")
-new.cluster.ids <- c("Lamp5", "Sst", "Vip", "Pvalb", "Vip", "Vip", "Vip")
+# for visualizing the four well-established GABAergic neurons subtypes, "Serpinf1", "Sncg" and "Meis2" were labeled as "Vip"
+# comment the following four lines to plot higer-resolution cell type labels from Gouwens 2020.
 
+new.cluster.ids <- c("Lamp5", "Sst", "Vip", "Pvalb", "Vip", "Vip", "Vip")
 names(new.cluster.ids) <- levels(Patch_seq_sub_fs)
 new.cluster.ids <- sort(new.cluster.ids)
 Patch_seq_sub_fs <- RenameIdents(Patch_seq_sub_fs, new.cluster.ids)
 
-# add these colors to the cols parameter to support higher-resolution cell type labels including "Serpinf1", "Sncg" and "Meis2" "#FF5722", "#212121", "#AAAAAA"
+# add these colors to the cols parameter to splot higer-resolution cell type labels from Gouwens 2020: "#FF5722", "#212121", "#AAAAAA"
 DimPlot(Patch_seq_sub_fs, pt.size =2, cols = c("#F8766D","#53B400","#A58AFF","#FB61D7")) + ggtitle("Transcriptional metadata labels") +
     theme(legend.text = element_text(size = 50), axis.title = element_text(size=40), plot.title = element_text(size = 40, hjust = 0.5, face = "bold")) +
     guides(colour = guide_legend(override.aes = list(size=8)))
@@ -183,7 +182,7 @@ Patch_seq_Sst <- RunPCA(Patch_seq_Sst)
 Patch_seq_Sst <- FindNeighbors(Patch_seq_Sst)
 Patch_seq_Sst <- FindClusters(Patch_seq_Sst, resolution = 0.5)
 Patch_seq_Sst <- RunUMAP(Patch_seq_Sst, 1:20)
-#colnames(Patch_seq_Sst)
+
 DimPlot(Patch_seq_Sst, group.by = "T_labels", pt.size = 2, )+ ggtitle("Sst subtype labels") + theme(legend.text = element_text(size = 35), axis.title = element_text(size=40), title = element_text(size = 40)) +
     guides(colour = guide_legend(override.aes = list(size=8), ncol = 1)) 
 
@@ -205,8 +204,8 @@ if(K==3){
     new.cluster.ids <- c("EC2", "EC0", "EC1")
     names(new.cluster.ids) <- levels(Patch_seq_Sst)
     new.cluster.ids <- sort(new.cluster.ids)
-    Patch_seq_Sst <- RenameIdents(Patch_seq_Sst ,new.cluster.ids)
-    #Patch_seq_Sst <- RenameIdents(Patch_seq_Sst ,new.cluster.ids)
+    Patch_seq_Sst <- RenameIdents(Patch_seq_Sst, new.cluster.ids)
+
     DimPlot(Patch_seq_Sst, pt.size = 2, cols = c("#440154","#21908c","#fde725") ) + ggtitle("Eph Clusters (K=3)") +
         theme(legend.text = element_text(size = 50), axis.title = element_text(size=40), plot.title = element_text(size = 40, hjust = 0.5, face = "bold")) +
         guides(colour = guide_legend(override.aes = list(size=8))) 
