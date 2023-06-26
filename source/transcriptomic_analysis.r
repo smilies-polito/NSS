@@ -146,15 +146,21 @@ if (K==2){
 }
 
 Idents(Patch_seq_sub_fs) <- "T_labels_main"
-new.cluster.ids <- c("Sst", "Lamp5", "Vip", "Pvalb", "Vip", "Vip")
+
+# for simplifying the visualization, "Serpinf1", "Sncg" and "Meis2" were labeled as "Vip"
+# uncomment the following line to plot higher-resolution cell type labels:
+# new.cluster.ids <- c("Lamp5", "Sst", "Vip", "Pvalb", "Serpinf1", "Sncg", "Meis2")
+new.cluster.ids <- c("Lamp5", "Sst", "Vip", "Pvalb", "Vip", "Vip", "Vip")
+
 names(new.cluster.ids) <- levels(Patch_seq_sub_fs)
 new.cluster.ids <- sort(new.cluster.ids)
-Patch_seq_sub_fs <- RenameIdents(Patch_seq_sub_fs ,new.cluster.ids)
+Patch_seq_sub_fs <- RenameIdents(Patch_seq_sub_fs, new.cluster.ids)
+
+# add these colors to the cols parameter to support higher-resolution cell type labels including "Serpinf1", "Sncg" and "Meis2" "#FF5722", "#212121", "#AAAAAA"
 DimPlot(Patch_seq_sub_fs, pt.size =2, cols = c("#F8766D","#53B400","#A58AFF","#FB61D7")) + ggtitle("Transcriptional metadata labels") +
     theme(legend.text = element_text(size = 50), axis.title = element_text(size=40), plot.title = element_text(size = 40, hjust = 0.5, face = "bold")) +
     guides(colour = guide_legend(override.aes = list(size=8)))
 ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "transcriptomic_embedding_transcriptomic_labels.pdf", width = 1920, height = 1080, units= "px",scale = 3.5)
-
 
 g_p <- FeaturePlot(Patch_seq_sub_fs, features = c("Pvalb"), pt.size = 2 ) + theme(plot.title = element_text(hjust = 0.5, size = 30), axis.text = element_text(size=20), axis.title = element_text(size=30)) 
 g_s <- FeaturePlot(Patch_seq_sub_fs, features = c("Sst"), pt.size = 2 ) + theme(plot.title = element_text(hjust = 0.5, size = 30) , axis.text = element_text(size=20), axis.title = element_text(size=30))
