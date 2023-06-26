@@ -120,7 +120,7 @@ Credits:  Allen Institute for Brain Science (2023). Cell Types dataset. Availabl
 
 Primary publication: Gouwens, N.W., Sorensen, S.A., Berg, J. et al. Classification of electrophysiological and morphological neuron types in the mouse visual cortex. Nat Neurosci 22, 1182–1195 (2019), https://doi.org/10.1038/s41593-019-0417-0.
 
-## Reproducing the analysis using the NSS Singularity container
+## Reproducing the analysis running the NSS Singularity container
 
 To reproduce the analyses from _Martini et al., 2023_, run the `NSS.sif` container with the required commandline arguments: a keyword to indicate the type of analysis (`hardValidation` or `softValidation`), and the EP clustering cardinality (`k=2` or `k=3`).
 
@@ -134,8 +134,19 @@ singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.si
 singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif softValidation
 ```
 
-## Reproducing the analysis manually
-To run analyses manually launch the scripts provided in `/source` as follows.
+## Reproducing the analysis manually within the NSS Singularity container
+To run analyses manually launch the NSS Singularity container, move to `/source`, and launch the scripts as follows.
+
+First of all, launch the NSS Singularity container
+```
+cd source
+singularity shell --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif
+```
+This will run a shell within the container, and the following prompt should appear:
+```
+Singularity>
+```
+Using this prompt, follow the steps below. 
 
 ### Hard Validation: EP and transcriptomic joint and multimodal analysis over _PatchSeqDataset_ 
 1) Run the EP analysis indicating:
@@ -145,31 +156,36 @@ To run analyses manually launch the scripts provided in `/source` as follows.
  
 For example:
 ```
-pyhon3 /source/EP_analysis.py PatchSeqDataset 3
+Singularity> python3 EP_analysis.py PatchSeqDataset 3
 ```
 This script leverages EP files in `data/PatchSeqDataset/` to generate NSS clustering files and images of NSS-based embeddings labeled with NSS clustering labels in `output/PatchSeqDataset/`.
 
 2) Run the transcriptomic analysis: 
 ```
-Rscript /source/transcriptomic_analysis.R
+Singularity> Rscript transcriptomic_analysis.r
 ```
 This script leverages the count file in `data/PatchSeqDataset/` to generate transcriptomic clustering files and images of transcriptomic-based embeddings labeled with transcriptomics-based cell types labels in `output/PatchSeqDataset/`. It employs NSS labels from the NSS clustering files to generate transcriptomic-based embeddings labeled with NSS-based labels for both the entire dataset and the Sst subset. Then, performing Differential Expression (DE) analysis over NSS-based cell subsets it generates lists of DE genes for each NSS cluster.
 
-3) Perform Gene Ontology (GO) Enrichment Analysis (EA)
+3) Run the Gene Ontology (GO) Enrichment Analysis (EA)
+```
+Singularity> Rscript GO_enrichment_analysis.r
+```
+
 To reproduce the provided analysis in the paper, upload the list of DE genes for the EC0 NSS-based cluster (Pvalb-like EP profiles) from the whole dataset to the `ShinyGO` tool (http://bioinformatics.sdstate.edu/go/) and generate plots for the three ontologies employed, selecting them from the Pathway Database menu: `GO Biological Process`, `GO Cellular Component` and `GO Molecular Function`. Keep all the other parameters at default values. 
 
 Note: since this step is not fully automatic, the repository provides pre-computed GO EA files to generate figures. 
 
+
 ### Soft Validation: EP and cell-type-based joint analysis over _PatchClampDataset_ 
 
-1) Run the EP and cell types analysis indicating  indicating:
+1) Run the EP and cell types analysis indicating:
  
  * the type of dataset employed (`PatchClampDataset`)
  * the desired clustering cardinality (`k=2` or `k=3`)
 
- For example:
+For example:
 ```
-pyhon3 /source/EP_analysis.py PatchClampDataset 2
+Singularity> python3 EP_analysis.py PatchClampDataset 2
 ```
 This script leverages files in `data/PatchClampDataset/` to generate NSS clustering files in and images of NSS-based embeddings labeled with NSS clustering labels. It generates cell type label-based groups in `output/PatchSeqDataset/Cre_lines_groups/`, and images of NSS-based embeddings labeled with Cre cell lines-based cell types labels in `output/PatchSeqDataset/`.
 
