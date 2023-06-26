@@ -126,12 +126,12 @@ To reproduce the analyses from _Martini et al., 2023_, run the `NSS.sif` contain
 
 ### Hard Validation: EP and transcriptomic joint and multimodal analysis over _PatchSeqDataset_ 
 ```
-singularity run --no-home --bind /local/path/to/NSS:/local/path/to/home/ NSS.sif hardValidation
+singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif hardValidation
 ```
 
 ### Soft Validation: EP and cell-type-based joint analysis over _PatchClampDataset_ 
 ```
-singularity run --no-home --bind /local/path/to/NSS:/local/path/to/home/ NSS.sif softValidation
+singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif softValidation
 ```
 
 ## Reproducing the analysis manually
