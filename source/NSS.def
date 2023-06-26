@@ -2,19 +2,17 @@ Bootstrap: docker
 From: ubuntu:20.04
 Stage: build
  
-%files
-
-%post
+%environment 
 
     ln -fs /usr/share/zoneinfo/Europe/Rome /etc/localtime
     export DEBIAN_FRONTEND=noninteractive
     echo "export DEBIAN_FRONTEND=noninteractive" >> $SINGULARITY_ENVIRONMENT
-    
+ 
+%post
+
     apt-get update
     apt-get install -y --no-install-recommends apt-utils wget
     apt-get upgrade -y
-    
-    
     
     # set R 4.0 mirror
     # install two helper packages we need
@@ -40,7 +38,6 @@ Stage: build
 
     apt-get update -y
     
-    
     # Install R, Python, misc. utilities
     
     apt-get install -y r-base r-base-core r-recommended r-base-dev 
@@ -55,31 +52,25 @@ Stage: build
     
     R --slave -e 'install.packages("BiocManager", repos="https:/cloud.r-project.org")'
     R --slave -e 'BiocManager::install(version = "3.17")'
+    R --slave -e 'install.packages(c("data.table", "readsparse", "aricode", "dplyr", "tidyr", "ggplot2", "stringr", "patchwork"))'
+    R --slave -e 'BiocManager::install("Seurat")'
 
-    R --slave -e 'install.packages(c("data.table", "readsparse", "aricode", "dplyr", "tidyr", "ggplot2", "stringr", "patchwork"), type="source", dependencies = TRUE)'
-    
-    R --slave -e 'BiocManager::install("Seurat", type="source", dependencies = TRUE)'
-
-
-    apt-get clean
-
-    
     # Install required Pyhton packages
     
-    #pip3 --no-cache-dir install numpy==1.23.5
-    #pip3 --no-cache-dir install plotly==5.15.0
-    #pip3 --no-cache-dir install matplotlib=3.7.1
-    #pip3 --no-cache-dir install seaborn=0.12.2
-    #pip3 --no-cache-dir install pandas=1.5.3
-    #pip3 --no-cache-dir install scikit-learn=1.2.2
-    #pip3 --no-cache-dir install scipy=1.10.0
-    #pip3 --no-cache-dir install kaleido=0.2.1
+    pip3 --no-cache-dir install numpy==1.23.5
+    pip3 --no-cache-dir install plotly==5.15.0
+    pip3 --no-cache-dir install matplotlib=3.7.1
+    pip3 --no-cache-dir install seaborn=0.12.2
+    pip3 --no-cache-dir install pandas=1.5.3
+    pip3 --no-cache-dir install scikit-learn=1.2.2
+    pip3 --no-cache-dir install scipy=1.10.0
+    pip3 --no-cache-dir install kaleido=0.2.1
 
-
-    #apt-get update -y
+    apt-get clean
+    apt-get update -y
     
     
 %runscript
     
-    #cd source/$1
-    #python3 $2
+    
+    python3 $2
