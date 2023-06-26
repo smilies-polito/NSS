@@ -1,14 +1,12 @@
 Bootstrap: docker
 From: ubuntu:20.04
 Stage: build
- 
-%environment 
+
+%post
 
     ln -fs /usr/share/zoneinfo/Europe/Rome /etc/localtime
     export DEBIAN_FRONTEND=noninteractive
     echo "export DEBIAN_FRONTEND=noninteractive" >> $SINGULARITY_ENVIRONMENT
- 
-%post
 
     apt-get update
     apt-get install -y --no-install-recommends apt-utils wget
@@ -59,12 +57,12 @@ Stage: build
     
     pip3 --no-cache-dir install numpy==1.23.5
     pip3 --no-cache-dir install plotly==5.15.0
-    pip3 --no-cache-dir install matplotlib=3.7.1
-    pip3 --no-cache-dir install seaborn=0.12.2
-    pip3 --no-cache-dir install pandas=1.5.3
-    pip3 --no-cache-dir install scikit-learn=1.2.2
-    pip3 --no-cache-dir install scipy=1.10.0
-    pip3 --no-cache-dir install kaleido=0.2.1
+    pip3 --no-cache-dir install matplotlib==3.7.1
+    pip3 --no-cache-dir install seaborn==0.12.2
+    pip3 --no-cache-dir install pandas==1.5.3
+    pip3 --no-cache-dir install scikit-learn==1.2.2
+    pip3 --no-cache-dir install scipy==1.10.0
+    pip3 --no-cache-dir install kaleido==0.2.1
 
     apt-get clean
     apt-get update -y
@@ -73,4 +71,35 @@ Stage: build
 %runscript
     
     
-    python3 $2
+    if [ $1 = 'HardValidation' ]
+    then    
+        echo "Performing hard validation on PatchSeqDataset with NSS clustering cardinality k=2..."
+        echo "Starting EP analysis..."
+        python3 EP_analysis.py PatchSeqDataset 2
+        echo "Starting transcriptomic analysis..."
+        Rscript transcriptomic_analysis.r
+    
+        echo "Performing hard validation on PatchSeqDataset with NSS clustering cardinality k=3..."
+        echo "Starting EP analysis..."
+        python3 EP_analysis.py PatchSeqDataset 3
+        echo "Starting transcriptomic analysis..."
+        Rscript transcriptomic_analysis.r
+        echo "Starting gene ontology enrichment analysis..."
+        Rscript GO_analysis.r
+    fi
+    
+    if [ $1 = 'SoftValidation' ]
+    then    
+        echo "Performing soft validation on PatchClampDataset with NSS clustering cardinality k=2..."
+        echo "Starting analysis..."
+        python3 EP_analysis.py PatchClampDataset 2
+    
+        echo "Performing soft validation on PatchClampDataset with NSS clustering cardinality k=3..."
+        echo "Starting analysis..."
+        python3 EP_analysis.py PatchClampDataset 3
+    fi
+    
+    
+    
+    
+    
