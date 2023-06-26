@@ -4,8 +4,11 @@
 output/
 
 # singularity containers
-
 source/*.sif
+
+# Rout files
+
+source/*.Rout
 
 # Linux OS related
 
