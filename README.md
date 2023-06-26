@@ -82,9 +82,9 @@ Primary publication: Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, 
 ```
 NSS/data/PatchSeqDataset/PatchSeq_metadata.csv
 ```
-This file (provided in the repository) can be downloaded at https://brainmapportal-live-4cc80a57cd6e400d854-f7fdcae.divio-media.net/filer_public/5e/2a/5e2a5936-61da-4e09-b6da-74ab97ce1b02/20200711_patchseq_metadata_mouse.csv. 
+This file (provided in the repository) can be downloaded at https://brainmapportal-live-4cc80a57cd6e400d854-f7fdcae.divio-media.net/filer_public/0f/86/0f861fcb-36d5-4d3a-80e6-c3c04f34a8c7/20200711_patchseq_metadata_mouse.csv
 
-Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://doi.org/10.1016/j.cell.2020.09.057 (STAR Methods section).
+Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://portal.brain-map.org/explore/classes/multimodal-characterization/multimodal-characterization-mouse-visual-cortex.
 
 Primary publication: Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, A., Lee, B. R., Jarsky, T., ... & Zeng, H. (2020). Integrated morphoelectric and transcriptomic classification of cortical GABAergic cells. Cell, 183(4), 935-953, https://doi.org/10.1016/j.cell.2020.09.057.
 
@@ -181,7 +181,7 @@ This script leverages files in `data/PatchClampDataset/` to generate NSS cluster
 ├── data                                       // Data files
 |    ├── PatchSeqDataset                       // Data files for the PatchSeqDataset
 |    |    ├── PatchSeq_EP_features.csv         // EP features file for EP analysis of the PatchSeqDataset (Credits:  Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://dandiarchive.org/dandiset/000020/ and https://github.com/dandisets/000020.)
-|    |    ├── PatchSeq_metadata.csv            // metadata file for EP analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://doi.org/10.1016/j.cell.2020.09.057 (STAR Methods section).
+|    |    ├── PatchSeq_metadata.csv            // metadata file for EP analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://portal.brain-map.org/explore/classes/multimodal-characterization/multimodal-characterization-mouse-visual-cortex.
 |    |    └── count.csv                        // scRNA-seq data for transcriptomic analysis of the PatchSeqDataset (Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/.)
 |    | 
 |    └── PatchClampDataset                     // Data files for the PatchClampDataset
