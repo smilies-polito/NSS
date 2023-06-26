@@ -719,7 +719,7 @@ def preprocessData(dataset_neurons, dataset_type='PatchClampDataset', type_of_in
     # let's find and remove the NaN for selected features
     feat_with_Nan=[]
     if dataset_type=='PatchSeqDataset':
-        feat_with_Nan=['cell_subtype']
+        feat_with_Nan=['T-type Label']
     for feat in features:
         nan_count = dataset_neurons[feat].isna().sum()
         print("Nan for " + feat + ": " + str(nan_count))
@@ -760,8 +760,8 @@ def preprocessData(dataset_neurons, dataset_type='PatchClampDataset', type_of_in
         #print("PatchSeqDataset pre-processing: ")
         
         #save type of neurons for relevant rows
-        dataset_neurons_clean['cell_subtype'].fillna('Unknown  ', inplace=True)
-        specimen = dataset_neurons_clean['cell_subtype'].map(lambda x: x.split(" ")[0])
+        dataset_neurons_clean['T-type Label'].fillna('Unknown  ', inplace=True)
+        specimen = dataset_neurons_clean['T-type Label'].map(lambda x: x.split(" ")[0])
 
         type = dataset_neurons_clean['dendrite_type']
         donor = dataset_neurons_clean['donor__species']
