@@ -120,21 +120,7 @@ Credits:  Allen Institute for Brain Science (2023). Cell Types dataset. Availabl
 
 Primary publication: Gouwens, N.W., Sorensen, S.A., Berg, J. et al. Classification of electrophysiological and morphological neuron types in the mouse visual cortex. Nat Neurosci 22, 1182–1195 (2019), https://doi.org/10.1038/s41593-019-0417-0.
 
-## Reproducing the analysis running the NSS Singularity container
-
-To reproduce the analyses from _Martini et al., 2023_, run the `NSS.sif` container with the required commandline arguments: a keyword to indicate the type of analysis (`hardValidation` or `softValidation`), and the EP clustering cardinality (`k=2` or `k=3`).
-
-### Hard Validation: EP and transcriptomic joint and multimodal analysis over _PatchSeqDataset_ 
-```
-singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif hardValidation
-```
-
-### Soft Validation: EP and cell-type-based joint analysis over _PatchClampDataset_ 
-```
-singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif softValidation
-```
-
-## Reproducing the analysis manually within the NSS Singularity container
+## Reproducing the analysis interactively within the NSS Singularity container
 To run analyses manually launch the NSS Singularity container, move to `/source`, and launch the scripts as follows.
 
 First of all, launch the NSS Singularity container
@@ -189,6 +175,19 @@ Singularity> python3 EP_analysis.py PatchClampDataset 2
 ```
 This script leverages files in `data/PatchClampDataset/` to generate NSS clustering files in and images of NSS-based embeddings labeled with NSS clustering labels. It generates cell type label-based groups in `output/PatchSeqDataset/Cre_lines_groups/`, and images of NSS-based embeddings labeled with Cre cell lines-based cell types labels in `output/PatchSeqDataset/`.
 
+## Reproducing the analysis running the NSS Singularity container
+
+To reproduce the analyses from _Martini et al., 2023_, run the `NSS.sif` container with the required commandline arguments: a keyword to indicate the type of analysis (`hardValidation` or `softValidation`), and the EP clustering cardinality (`k=2` or `k=3`).
+
+### Hard Validation: EP and transcriptomic joint and multimodal analysis over _PatchSeqDataset_ 
+```
+singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif hardValidation
+```
+
+### Soft Validation: EP and cell-type-based joint analysis over _PatchClampDataset_ 
+```
+singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif softValidation
+```
 
 ## Repository structure
 
