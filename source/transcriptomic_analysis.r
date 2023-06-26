@@ -59,7 +59,6 @@ if (length(args) > 0) {
     print("No arguments provided.")
 }
 
-K=3
 # Load the data and preprocess
 print("Data Loading")
 Patch_seq <- read.csv("../data/PatchSeqDataset/count.csv", header=TRUE, row.names=1)
