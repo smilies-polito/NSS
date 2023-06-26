@@ -59,8 +59,11 @@ if (length(args) > 0) {
     print("No arguments provided.")
 }
 
+K=3
 # Load the data and preprocess
-Patch_seq <- read.csv("../data/PatchSeqDataset/count.csv", header=FALSE, row.names=1)
+print("Data Loading")
+Patch_seq <- read.csv("../data/PatchSeqDataset/count.csv", header=TRUE, row.names=1)
+print("Data processing")
 Patch_seq_S <- CreateSeuratObject(Patch_seq)
 Patch_seq_S <- NormalizeData(Patch_seq_S)
 Patch_seq_S <- FindVariableFeatures(Patch_seq_S)
@@ -69,53 +72,31 @@ Patch_seq_S <- RunPCA(Patch_seq_S)
 Patch_seq_S <- FindNeighbors(Patch_seq_S)
 Patch_seq_S <- FindClusters(Patch_seq_S, resolution = 0.8)
 Patch_seq_S <- RunUMAP(Patch_seq_S, dims = 1:10)
-DimPlot(Patch_seq_S)
 
 # Adding metadata and subsetting to inhibitory neurons
 met_labels <- read.csv("../data/PatchSeqDataset/PatchSeq_metadata.csv")
 t_labels <- met_labels[,c("transcriptomics_sample_id", "T.type.Label")]
 t_labels$transcriptomics_sample_id <- gsub("-",".", t_labels$transcriptomics_sample_id)
-t_labels <- t_labels[t_labels$transcriptomics_sample_id %in% colnames(Patch_seq_sub),]
-t_labels <- t_labels[match(colnames(Patch_seq_sub), t_labels$transcriptomics_sample_id),]
+t_labels <- t_labels[t_labels$transcriptomics_sample_id %in% colnames(Patch_seq_S),]
+t_labels <- t_labels[match(colnames(Patch_seq_S), t_labels$transcriptomics_sample_id),]
 t_labels_p <- separate(t_labels, col = T.type.Label, into = c("type" , "subtype1", "subtype2" ), sep = " ")
 t_labels_p <- unite(t_labels_p, type, subtype1, sep = " ",col = "subtype_name", remove = FALSE)
 
-Patch_seq_sub <- subset(Patch_seq_S, cells = t_labels$transcriptomics_sample_id)
+#Patch_seq_sub <- subset(Patch_seq_S, cells = t_labels$transcriptomics_sample_id)
 
 met_labels <- met_labels[,c("transcriptomics_sample_id", "MET.type.Label")]
 met_labels$transcriptomics_sample_id <- gsub("-",".", met_labels$transcriptomics_sample_id)
-met_labels <- met_labels[met_labels$transcriptomics_sample_id %in% colnames(Patch_seq_sub),]
-met_labels <- met_labels[match(colnames(Patch_seq_sub), met_labels$transcriptomics_sample_id),]
+met_labels <- met_labels[met_labels$transcriptomics_sample_id %in% colnames(Patch_seq_S),]
+met_labels <- met_labels[match(colnames(Patch_seq_S), met_labels$transcriptomics_sample_id),]
 
 
-Patch_seq_sub <- AddMetaData(Patch_seq_sub, t_labels$T.type.Label, col.name = "T_labels")
-Patch_seq_sub <- AddMetaData(Patch_seq_sub, t_labels_p$type, col.name = "T_labels_main")
-Patch_seq_sub <- AddMetaData(Patch_seq_sub, met_labels$MET.type.Label, col.name = "MET_labels")
-
-# Markers expression plots
-DimPlot(Patch_seq_sub, pt.size = 2)
-g_p <- FeaturePlot(Patch_seq_sub, features = c("Pvalb"), pt.size = 2 ) + theme(plot.title = element_text(hjust = 0.5, size = 30), axis.text = element_text(size=20), axis.title = element_text(size=30)) 
-g_s <- FeaturePlot(Patch_seq_sub, features = c("Sst"), pt.size = 2 ) + theme(plot.title = element_text(hjust = 0.5, size = 30) , axis.text = element_text(size=20), axis.title = element_text(size=30))
-g_v <- FeaturePlot(Patch_seq_sub, features = c("Vip"), pt.size = 2 ) + theme(plot.title = element_text(hjust = 0.5, size = 30), axis.text = element_text(size=20), axis.title = element_text(size=30))
-g_l <- FeaturePlot(Patch_seq_sub, features = c("Lamp5"), pt.size = 2 ) + theme(plot.title = element_text(hjust = 0.5, size = 30), axis.text = element_text(size=20), axis.title = element_text(size=30))
-(g_p/g_v)+ (g_s/g_v)
-wrap_plots(g_p,g_s,g_v,g_l, ncol = 2, nrow = 2)
-ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "transcriptomic_embedding_marker_expression.pdf", width = 1920, height = 1080, units= "px",scale = 3.5)
-
-Idents(Patch_seq_sub_fs) <- "T_labels_main"
-new.cluster.ids <- c("Sst", "Lamp5", "Vip", "Pvalb", "Vip", "Vip")
-names(new.cluster.ids) <- levels(Patch_seq_sub_fs)
-new.cluster.ids <- sort(new.cluster.ids)
-Patch_seq_sub_fs <- RenameIdents(Patch_seq_sub_fs ,new.cluster.ids)
-DimPlot(Patch_seq_sub_fs, pt.size =2, cols = c("#F8766D","#53B400","#A58AFF","#FB61D7")) + ggtitle("Transcriptional metadata labels") +
-  theme(legend.text = element_text(size = 50), axis.title = element_text(size=40), plot.title = element_text(size = 40, hjust = 0.5, face = "bold")) +
-  guides(colour = guide_legend(override.aes = list(size=8)))
-ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "transcriptomic_embedding_transcriptomic_labels.pdf", width = 1920, height = 1080, units= "px",scale = 3.5)
-
+Patch_seq_S <- AddMetaData(Patch_seq_S, t_labels$T.type.Label, col.name = "T_labels")
+Patch_seq_S <- AddMetaData(Patch_seq_S, t_labels_p$type, col.name = "T_labels_main")
+Patch_seq_S <- AddMetaData(Patch_seq_S, met_labels$MET.type.Label, col.name = "MET_labels")
 
 # Adding Eph clusters labels (both k=2 and k=3)
-if (K = 3){
-    fs_label <- read.csv("../output/NSS_clusters/NSS_clusters_k3.csv", header=FALSE)
+if (K == 3){
+    fs_label <- read.csv("../output/PatchSeqDataset/NSS_clusters/NSS_clusters_k3.csv", header=FALSE)
     fs_label$V1 <- gsub("-", ".", fs_label$V1)
     fs_cl <- fs_label[fs_label$V1 %in% colnames(Patch_seq_S),]
     fs_cl$V2 <- paste0("EC",fs_cl$V2 )
@@ -146,8 +127,8 @@ if (K = 3){
 }
 
 
-if (K=2){
-    fs_label <- read.csv("../output/NSS_clusters/NSS_clusters_k2.csv", header=FALSE)
+if (K==2){
+    fs_label <- read.csv("../output/PatchSeqDataset/NSS_clusters/NSS_clusters_k2.csv", header=FALSE)
     fs_label$V1 <- gsub("-", ".", fs_label$V1)
     fs_cl_2 <- fs_label[fs_label$V1 %in% colnames(Patch_seq_S),]
     fs_cl_2$V2 <- paste0("EC",fs_cl_2$V2 )
@@ -165,10 +146,28 @@ if (K=2){
     ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "transcriptomic_embedding_NSS_labels_k2.pdf", width = 1920, height = 1080, units= "px",scale = 3.5)
 }
 
+Idents(Patch_seq_sub_fs) <- "T_labels_main"
+new.cluster.ids <- c("Sst", "Lamp5", "Vip", "Pvalb", "Vip", "Vip")
+names(new.cluster.ids) <- levels(Patch_seq_sub_fs)
+new.cluster.ids <- sort(new.cluster.ids)
+Patch_seq_sub_fs <- RenameIdents(Patch_seq_sub_fs ,new.cluster.ids)
+DimPlot(Patch_seq_sub_fs, pt.size =2, cols = c("#F8766D","#53B400","#A58AFF","#FB61D7")) + ggtitle("Transcriptional metadata labels") +
+    theme(legend.text = element_text(size = 50), axis.title = element_text(size=40), plot.title = element_text(size = 40, hjust = 0.5, face = "bold")) +
+    guides(colour = guide_legend(override.aes = list(size=8)))
+ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "transcriptomic_embedding_transcriptomic_labels.pdf", width = 1920, height = 1080, units= "px",scale = 3.5)
+
+
+g_p <- FeaturePlot(Patch_seq_sub_fs, features = c("Pvalb"), pt.size = 2 ) + theme(plot.title = element_text(hjust = 0.5, size = 30), axis.text = element_text(size=20), axis.title = element_text(size=30)) 
+g_s <- FeaturePlot(Patch_seq_sub_fs, features = c("Sst"), pt.size = 2 ) + theme(plot.title = element_text(hjust = 0.5, size = 30) , axis.text = element_text(size=20), axis.title = element_text(size=30))
+g_v <- FeaturePlot(Patch_seq_sub_fs, features = c("Vip"), pt.size = 2 ) + theme(plot.title = element_text(hjust = 0.5, size = 30), axis.text = element_text(size=20), axis.title = element_text(size=30))
+g_l <- FeaturePlot(Patch_seq_sub_fs, features = c("Lamp5"), pt.size = 2 ) + theme(plot.title = element_text(hjust = 0.5, size = 30), axis.text = element_text(size=20), axis.title = element_text(size=30))
+(g_p/g_v)+ (g_s/g_v)
+wrap_plots(g_p,g_s,g_v,g_l, ncol = 2, nrow = 2)
+ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "transcriptomic_embedding_marker_expression.pdf", width = 1920, height = 1080, units= "px",scale = 3.5)
 
 
 ########## Sst zoom ###########
-
+print("Focus on Sst")
 Idents(Patch_seq_sub_fs) <- "T_labels_main"
 Patch_seq_Sst <- subset(Patch_seq_sub_fs, idents =  "Sst")
 DimPlot(Patch_seq_Sst)
@@ -185,16 +184,24 @@ DimPlot(Patch_seq_Sst, group.by = "T_labels", pt.size = 2, )+ ggtitle("Sst subty
 
 ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "transcriptomic_embedding_transcriptomic_labels_Sst_subset.pdf", width = 1920, height = 1080, units= "px",scale = 3.5)
 
-if(K=2){
+if(K==2){
     Idents(Patch_seq_Sst) <- "Cluster_fs"
+    new.cluster.ids <- c("EC1", "EC0")
+    names(new.cluster.ids) <- levels(Patch_seq_Sst)
+    new.cluster.ids <- sort(new.cluster.ids)
+    Patch_seq_Sst <- RenameIdents(Patch_seq_Sst ,new.cluster.ids)
     DimPlot(Patch_seq_Sst, pt.size = 2, cols = c("#440154","#fde725") ) + ggtitle("Eph Clusters (K=3)") +
         theme(legend.text = element_text(size = 50), axis.title = element_text(size=40), plot.title = element_text(size = 40, hjust = 0.5, face = "bold")) +
         guides(colour = guide_legend(override.aes = list(size=8))) 
-    ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "transcriptomic_embedding_NSS_labels_k3_Sst_subset.pdf", width = 1920, height = 1080, units= "px",scale = 3.5)
+    ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "transcriptomic_embedding_NSS_labels_k2_Sst_subset.pdf", width = 1920, height = 1080, units= "px",scale = 3.5)
 }
-if(K=3){
+if(K==3){
     Idents(Patch_seq_Sst) <- "Cluster_fs"
+    new.cluster.ids <- c("EC2", "EC0", "EC1")
+    names(new.cluster.ids) <- levels(Patch_seq_Sst)
+    new.cluster.ids <- sort(new.cluster.ids)
     Patch_seq_Sst <- RenameIdents(Patch_seq_Sst ,new.cluster.ids)
+    #Patch_seq_Sst <- RenameIdents(Patch_seq_Sst ,new.cluster.ids)
     DimPlot(Patch_seq_Sst, pt.size = 2, cols = c("#440154","#21908c","#fde725") ) + ggtitle("Eph Clusters (K=3)") +
         theme(legend.text = element_text(size = 50), axis.title = element_text(size=40), plot.title = element_text(size = 40, hjust = 0.5, face = "bold")) +
         guides(colour = guide_legend(override.aes = list(size=8))) 
@@ -204,12 +211,19 @@ if(K=3){
 #################
 
 # Differential expression
-EC0_vs_EC1 <- FindMarkers(Patch_seq_sub_fs, ident.1 = "EC0", ident.2 = "EC1")
-EC0_vs_EC1$gene <- rownames(EC0_vs_EC1)
-EC0_vs_EC1_P <- EC0_vs_EC1 %>% filter(avg_log2FC > 0)
-write.csv(EC0_vs_EC1_P, file = paste0("../output/PatchSeqDataset/GO_enrichment_analysis/NSS_cluster0_k",K,"_DE_genes.csv"))
-
-if (K=3){
+print("DE analysis")
+if (K==3){
+    Idents(Patch_seq_sub_fs) <- "Cluster_fs"
+    new.cluster.ids <- c("EC2", "EC0", "EC1")
+    names(new.cluster.ids) <- levels(Patch_seq_sub_fs)
+    new.cluster.ids <- sort(new.cluster.ids)
+    Patch_seq_sub_fs <- RenameIdents(Patch_seq_sub_fs ,new.cluster.ids)
+    
+    EC0_vs_EC1 <- FindMarkers(Patch_seq_sub_fs, ident.1 = "EC0", ident.2 = "EC1")
+    EC0_vs_EC1$gene <- rownames(EC0_vs_EC1)
+    EC0_vs_EC1_P <- EC0_vs_EC1 %>% filter(avg_log2FC > 0)
+    write.csv(EC0_vs_EC1_P, file = paste0("../output/PatchSeqDataset/GO_enrichment_analysis/NSS_cluster0_k",K,"_DE_genes.csv"))
+    
     EC1_vs_EC2 <- FindMarkers(Patch_seq_sub_fs, ident.1 = "EC1", ident.2 = "EC2")
     EC1_vs_EC2$gene <- rownames(EC1_vs_EC2)
     EC1_vs_EC2_P <- EC1_vs_EC2 %>% filter(avg_log2FC > 0)
@@ -236,8 +250,16 @@ if (K=3){
     
 }
 
-if(K=2){
-    
+if(K==2){
+    Idents(Patch_seq_sub_fs) <- "Cluster_fs"
+    new.cluster.ids <- c("EC1", "EC0")
+    names(new.cluster.ids) <- levels(Patch_seq_sub_fs)
+    new.cluster.ids <- sort(new.cluster.ids)
+    Patch_seq_sub_fs <- RenameIdents(Patch_seq_sub_fs ,new.cluster.ids)
+    EC0_vs_EC1 <- FindMarkers(Patch_seq_sub_fs, ident.1 = "EC0", ident.2 = "EC1")
+    EC0_vs_EC1$gene <- rownames(EC0_vs_EC1)
+    EC0_vs_EC1_P <- EC0_vs_EC1 %>% filter(avg_log2FC > 0)
+    write.csv(EC0_vs_EC1_P, file = paste0("../output/PatchSeqDataset/GO_enrichment_analysis/NSS_cluster0_k",K,"_DE_genes.csv"))
     VlnPlot(Patch_seq_sub_fs, features = c("Kcnc2"), cols = c("#440154","#fde725")) + NoLegend() + theme(axis.title.x=element_blank(),
                                                                                                                    axis.text.x=element_blank(),
                                                                                                                    axis.ticks.x=element_blank(), plot.title = element_blank())
