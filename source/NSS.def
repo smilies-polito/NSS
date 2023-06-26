@@ -77,13 +77,13 @@ Stage: build
         echo "Starting EP analysis..."
         python3 EP_analysis.py PatchSeqDataset 2
         echo "Starting transcriptomic analysis..."
-        Rscript transcriptomic_analysis.r
+        Rscript transcriptomic_analysis.r 2
     
         echo "Performing hard validation on PatchSeqDataset with NSS clustering cardinality k=3..."
         echo "Starting EP analysis..."
         python3 EP_analysis.py PatchSeqDataset 3
         echo "Starting transcriptomic analysis..."
-        Rscript transcriptomic_analysis.r
+        Rscript transcriptomic_analysis.r 3
         echo "Starting gene ontology enrichment analysis..."
         Rscript GO_analysis.r
     fi
