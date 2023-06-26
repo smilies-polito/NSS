@@ -33,6 +33,7 @@ library(Seurat)
 library(stringr)
 library(patchwork)
 
+pdf(NULL)
 #######
 
 if (!(dir.exists("../output"))){
