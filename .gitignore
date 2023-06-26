@@ -7,11 +7,13 @@ output/
 source/*.sif
 
 # Rout files
-
 source/*.Rout
 
-# Linux OS related
 
+# transcriptomic count file
+data/PatchSeqDataset/*count*.csv
+
+# Linux OS related
 *~
 
 # temporary files which can be created if a process still has a handle open of a deleted file
