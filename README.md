@@ -72,7 +72,7 @@ Three files are required, and it is necessary to rename them and organize them i
 ```
 NSS/data/PatchSeqDataset/PatchSeq_EP_features.csv
 ```
-This file is generated with a custom script calling the DANDI (https://dandiarchive.org) APIs to access the DANDISET 000020 (https://doi.org/10.48324/dandi.000020/0.210913.1639). This script leverages the `dandi-cli` tool (10.5281/zenodo.3692138) to access raw EP data for each cell and compute EP features.
+This file (provided in the repository) is generated with a custom script calling the DANDI (https://dandiarchive.org) APIs to access the DANDISET 000020 (https://doi.org/10.48324/dandi.000020/0.210913.1639). This script leverages the `dandi-cli` tool (10.5281/zenodo.3692138) to access raw EP data for each cell and compute EP features.
 
 Credits:  Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://dandiarchive.org/dandiset/000020/ and https://github.com/dandisets/000020.
 
@@ -82,7 +82,7 @@ Primary publication: Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, 
 ```
 NSS/data/PatchSeqDataset/PatchSeq_metadata.csv
 ```
-This file can be downloaded at https://brainmapportal-live-4cc80a57cd6e400d854-f7fdcae.divio-media.net/filer_public/5e/2a/5e2a5936-61da-4e09-b6da-74ab97ce1b02/20200711_patchseq_metadata_mouse.csv. 
+This file (provided in the repository) can be downloaded at https://brainmapportal-live-4cc80a57cd6e400d854-f7fdcae.divio-media.net/filer_public/5e/2a/5e2a5936-61da-4e09-b6da-74ab97ce1b02/20200711_patchseq_metadata_mouse.csv. 
 
 Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://doi.org/10.1016/j.cell.2020.09.057 (STAR Methods section).
 
@@ -92,7 +92,7 @@ Primary publication: Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, 
 ```
 NSS/data/PatchSeqDataset/count.csv
 ```
-This file can be downloaded and extracted from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/20200513_Mouse_PatchSeq_Release_count.v2.csv.tar.
+This file (not provided in the repository) can be downloaded and extracted from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/20200513_Mouse_PatchSeq_Release_count.v2.csv.tar.
 
 Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mouse visual cortex. Available from https://data.nemoarchive.org/other/AIBS/AIBS_patchseq/transcriptome/scell/SMARTseq/processed/analysis/20200611/.
 
@@ -104,7 +104,7 @@ Two files are required, and it is necessary to rename them and organize them in 
 ```
 NSS/data/PatchClampDataset/PatchClamp_EP_features.csv
 ```
-This file is generated with a custom script calling the Allen SDK APIs and using the IPFX library to access precumputed EP features for each cell in the Cell Types Database.
+This file (provided in the repository) is generated with a custom script calling the Allen SDK APIs and using the IPFX library to access precumputed EP features for each cell in the Cell Types Database.
 
 Credits:  Allen Institute for Brain Science (2023). Allen SDK. Available from https://github.com/alleninstitute/allensdk. Allen Institute for Brain Science (2023). IPFX. Available from https://github.com/alleninstitute/ipfx.
 
@@ -114,7 +114,7 @@ Primary publication: Gouwens, N.W., Sorensen, S.A., Berg, J. et al. Classificati
 ```
 NSS/data/PatchClampDataset/PatchClamp_metadata.csv
 ```
-This file can be downloaded at http://celltypes.brain-map.org/cell_types_specimen_details.csv. 
+This file (provided in the repository) can be downloaded at http://celltypes.brain-map.org/cell_types_specimen_details.csv. 
 
 Credits:  Allen Institute for Brain Science (2023). Cell Types dataset. Available from http://celltypes.brain-map.org/data (DOWNLOAD CELL FEATURE DATA button).
 
