@@ -71,7 +71,8 @@ Stage: build
 %runscript
     
     #!/bin/sh
-    
+    echo $1
+    cd source
     if [ $1 = "HardValidation" ]; then    
         echo "Performing hard validation on PatchSeqDataset with NSS clustering cardinality k=2..."
         echo "Starting EP analysis..."
