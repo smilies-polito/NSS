@@ -117,7 +117,11 @@ def main(dataset_type='PatchSeqDataset', cell_type='aspiny',  stimulation='ramp'
     # OPT1: silhoutte score to identify optimal number of clusters k
     CLUSTERING_METHOD='Agglomerative'
 
-    silhoutte_plot(dataset_neurons_clean, CLUSTERING_METHOD)
+    optimal_k=silhoutte_plot(dataset_neurons_clean, CLUSTERING_METHOD)
+
+    if n_clust_to_search==-1:
+        n_clust_to_search=optimal_k
+
 
     if CLUSTERING_METHOD=='Agglomerative':
         #dendogram_construction(dataset_neurons_clean)
@@ -535,8 +539,12 @@ def silhoutte_plot(dataset, clust_type='Agglomerative'):
     plt.ylabel("Silhouette score")
     
     
+    optimal_k = max(sil_scores, key=lambda k: sil_scores[k])
+    
     plt.savefig(os.path.join(path_for_images, 'silhouette.png'),dpi=300.0, bbox_inches='tight')
     #plt.show()
+    return optimal_k
+
 
 def plot_dendrogram(model, **kwargs):
     """
@@ -967,5 +975,9 @@ if __name__=='__main__':
     if (len(sys.argv)!=3):
         print("Wrong number of arguments! Format is: EP_analysis.py [dataset_type] [number_of_clusters] ")
     dataset_type=sys.argv[1]
-    number_of_clusters=int(sys.argv[2])
+    if isdigit(sys.argv[2]):
+        number_of_clusters=int(sys.argv[2])
+    else:
+        #will set number_of_clusters = max(silhouette), but here first set it to -1 as flag
+        number_of_clusters=-1
     main(dataset_type, 'aspiny', 'ramp', number_of_clusters, 'CLUSTER')
