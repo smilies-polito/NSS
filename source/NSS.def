@@ -69,20 +69,13 @@ Stage: build
     
     
 %runscript
-    
     #!/bin/sh
     echo $1
     cd source
     if [ $1 = "HardValidation" ]; then    
-        echo "Performing hard validation on PatchSeqDataset with NSS clustering cardinality k=2..."
+        echo "Performing hard validation on PatchSeqDataset with NSS optmail clustering cardinality (k=3)"
         echo "Starting EP analysis..."
-        python3 EP_analysis.py PatchSeqDataset 2
-        echo "Starting transcriptomic analysis..."
-        Rscript transcriptomic_analysis.r 2
-    
-        echo "Performing hard validation on PatchSeqDataset with NSS clustering cardinality k=3..."
-        echo "Starting EP analysis..."
-        python3 EP_analysis.py PatchSeqDataset 3
+        python3 EP_analysis.py PatchSeqDataset default
         echo "Starting transcriptomic analysis..."
         Rscript transcriptomic_analysis.r 3
         
@@ -91,14 +84,12 @@ Stage: build
     fi
     
     if [ $1 = "SoftValidation" ]; then    
-        echo "Performing soft validation on PatchClampDataset with NSS clustering cardinality k=2..."
+        echo "Performing soft validation on PatchClampDataset with NSS optimal clustering cardinality (k=2)"
         echo "Starting analysis..."
-        python3 EP_analysis.py PatchClampDataset 2
+        python3 EP_analysis.py PatchClampDataset default
     
-        echo "Performing soft validation on PatchClampDataset with NSS clustering cardinality k=3..."
-        echo "Starting analysis..."
-        python3 EP_analysis.py PatchClampDataset 3
     fi
+    
     
     
     
