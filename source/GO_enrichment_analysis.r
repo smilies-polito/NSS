@@ -48,33 +48,33 @@ go_1 <- read.csv("../output/PatchSeqDataset/GO_enrichment_analysis/enrichment_mo
 go_2 <- read.csv("../output/PatchSeqDataset/GO_enrichment_analysis/enrichment_cellular.csv")
 go_3 <- read.csv("../output/PatchSeqDataset/GO_enrichment_analysis/enrichment_biological.csv")
 
-go_1 %>% arrange(Fold.Enrichment)  %>% mutate(Pathway = factor(Pathway, levels= Pathway)) %>%  slice(-2, -1) %>% 
+go_1 %>% arrange(Fold.Enrichment)  %>% mutate(Pathway = factor(Pathway, levels= Pathway)) %>%  dplyr::slice(-2, -1) %>% 
   ggplot(aes(x=Fold.Enrichment, y = Pathway, color= -log(Enrichment.FDR))) + 
   geom_segment(aes(xend=0, yend=Pathway), size = 1.5) + geom_point(aes(size=nGenes)) + 
   theme(axis.text = element_text(size = 45) ,title = element_text(size=45), panel.background = element_rect(fill = "white"), panel.grid.major = element_line(color = "grey80"), panel.grid.minor  = element_line(color = "grey90"),
-        legend.text = element_text(size=40)) + 
-  labs(color= "-log(FDR)" ,y="", x = "", title = "GO Molecular Function") 
+        legend.text = element_text(size=40), legend.key.size = unit(30, "pt")) + 
+  labs(color= "-log(FDR)" ,y="", x = "Fold Enrichment", title = "GO Molecular Function") 
 
-ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "GO_molecular_plot.pdf", width = 2120, height = 1080, units= "px",scale = 3.5)
+ggsave(path = "../output/PatchSeqDataset/IMAGES", filename = "GO_molecular_plot.pdf", width = 2120, height = 1080, units= "px",scale = 3.5)
 
 
-go_2 %>% arrange(Fold.Enrichment)  %>% mutate(Pathway = factor(Pathway, levels= Pathway)) %>%  slice(-2, -1) %>% 
+go_2 %>% arrange(Fold.Enrichment)  %>% mutate(Pathway = factor(Pathway, levels= Pathway)) %>%  dplyr::slice(-2, -1) %>% 
   ggplot(aes(x=Fold.Enrichment, y = Pathway, color= -log(Enrichment.FDR))) + 
   geom_segment(aes(xend=0, yend=Pathway), size = 1.5) + geom_point(aes(size=nGenes)) + 
   theme(axis.text = element_text(size = 45) ,title = element_text(size=45), panel.background = element_rect(fill = "white"), panel.grid.major = element_line(color = "grey80"), panel.grid.minor  = element_line(color = "grey90"),
-        legend.text = element_text(size=40)) + 
+        legend.text = element_text(size=40), legend.key.size = unit(30, "pt") ) +
   labs(color= "-log(FDR)" ,y="", x = "Fold Enrichment", title = "GO Cellular Component")
 
 ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "GO_cellular_plot.pdf", width = 2120, height = 1080, units= "px",scale = 3.5)
 
 
 
-go_3 %>% arrange(Fold.Enrichment)  %>% mutate(Pathway = factor(Pathway, levels= Pathway)) %>%  slice(-2, -1) %>% 
+go_3 %>% arrange(Fold.Enrichment)  %>% mutate(Pathway = factor(Pathway, levels= Pathway)) %>%  dplyr::slice(-2, -1) %>% 
   ggplot(aes(x=Fold.Enrichment, y = Pathway, color= -log(Enrichment.FDR))) + 
   geom_segment(aes(xend=0, yend=Pathway), size = 1.5) + geom_point(aes(size=nGenes)) + 
   theme(axis.text = element_text(size = 45) ,title = element_text(size=45), panel.background = element_rect(fill = "white"), panel.grid.major = element_line(color = "grey80"), panel.grid.minor  = element_line(color = "grey90"),
-        legend.text = element_text(size=40)) + 
-  labs(color= "-log(FDR)" ,y="", x = "", title = "GO Biological Process")
+        legend.text = element_text(size=40), legend.key.size = unit(30, "pt")) + 
+  labs(color= "-log(FDR)" ,y="", x = "Fold Enrichment", title = "GO Biological Process")
 
 ggsave(path = "../output/PatchSeqDataset/IMAGES/", filename = "GO_biological_plot.pdf", width = 2120, height = 1080, units= "px",scale = 3.5)
 
