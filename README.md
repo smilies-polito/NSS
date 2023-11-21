@@ -64,7 +64,7 @@ In _Martini et al., 2023_, NSS validation relies on multimodal analysis over bot
 
 In order to reproduce the analysis, it is necessary to gather and rename required data files, organizing them in the repository folders as provided below.
 
-### Hard Validation: A EP and transcriptomic joint and multimodal analysis over _PatchSeqDataset_ 
+### EP and transcriptomic joint and multimodal analysis over _PatchSeqDataset_ 
 
 Three files are required, and it is necessary to rename them and organize them in the repository folders as provided below.
 
@@ -98,7 +98,7 @@ Credits: Allen Institute for Brain Science (2020). Patch-seq recordings from mou
 
 Primary publication: Gouwens, N. W., Sorensen, S. A., Baftizadeh, F., Budzillo, A., Lee, B. R., Jarsky, T., ... & Zeng, H. (2020). Integrated morphoelectric and transcriptomic classification of cortical GABAergic cells. Cell, 183(4), 935-953, https://doi.org/10.1016/j.cell.2020.09.057.
 
-### Soft Validation: A EP and cell-type-based joint analysis over _PatchClampDataset_ 
+### EP and cell-type-based joint analysis over _PatchClampDataset_ 
 Two files are required, and it is necessary to rename them and organize them in the repository folders as provided below.
 1) The file reporting the EP features of all cells in the dataset and supporting EP analysis:
 ```
@@ -134,7 +134,7 @@ Singularity>
 ```
 Using this prompt, follow the steps below. 
 
-### Hard Validation: EP and transcriptomic joint and multimodal analysis over _PatchSeqDataset_ 
+### EP and transcriptomic joint and multimodal analysis over _PatchSeqDataset_ 
 1) Run the EP analysis indicating:
  
  * the type of dataset employed (`PatchSeqDataset`)
@@ -162,7 +162,7 @@ To reproduce the provided analysis in the paper, upload the list of DE genes for
 Note: since this step is not fully automatic, the repository provides pre-computed GO EA files to generate figures. 
 
 
-### Soft Validation: EP and cell-type-based joint analysis over _PatchClampDataset_ 
+### EP and cell-type-based joint analysis over _PatchClampDataset_ 
 
 1) Run the EP and cell types analysis indicating:
  
@@ -177,17 +177,13 @@ This script leverages files in `data/PatchClampDataset/` to generate NSS cluster
 
 ## Reproducing the analysis running the NSS Singularity container
 
-To reproduce the analyses from _Martini et al., 2023_, run the `NSS.sif` container with the required commandline arguments: a keyword to indicate the type of analysis (`hardValidation` or `softValidation`), and the EP clustering cardinality (`k=2` or `k=3`).
+To reproduce the analyses from _Martini et al., 2023_, run the `NSS.sif`. This command will run the `%runscript` part of the `NSS.def` file. This command computes all the analyses over both the datasets, providing all the results presented in the paper.
 
-### Hard Validation: EP and transcriptomic joint and multimodal analysis over _PatchSeqDataset_ 
+
 ```
-singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif HardValidation
+singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif
 ```
 
-### Soft Validation: EP and cell-type-based joint analysis over _PatchClampDataset_ 
-```
-singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.sif SoftValidation
-```
 
 ## Repository structure
 
@@ -223,6 +219,14 @@ singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.si
 |    |    |    ├── enrichment_cellular.csv              // data for gene-ontology enrichment analysis images (downloaded from http://bioinformatics.sdstate.edu/go/, GO Cellular Component)
 |    |    |    ├── enrichment_molecular.csv             // data for gene-ontology enrichment analysis images (downloaded from http://bioinformatics.sdstate.edu/go/, GO Molecular Function)
 |    |    |    └── enrichment_biological.csv            // data for gene-ontology enrichment analysis images (downloaded from http://bioinformatics.sdstate.edu/go/, GO Biological Process)
+|    |    |
+|    |    ├──  Electrophys_feature_plots                	// Electrophysiological feature plots over the NSS clusters
+|    |    |    ├── AP_Patch_seq.pdf				// AP half-width plot
+|    |    |    ├── avg_ISI_Patch_seq.pdf		        // Average ISI plots
+|    |    |    ├── ficurve_Patch_seq.pdf		        // f-I curve slope plot
+|    |    |    ├── th_I_clus_Patch_seq.pdf		        // Current threshold plot
+|    |    |    ├── th_I_clus_puntini_Patch_seq.pdf		// Current threshold between celltypes plot
+|    |    |    └── medians.csv 					// Table of medians values for all the electrophysiological features over the NSS cliusters
 |    |    |
 |    |    ├── MISC                                      // miscellaneous files supporting intermediate analysis steps
 |    |    |    └── ...                                       
@@ -269,6 +273,14 @@ singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.si
 |         |
 |         ├── cre_lines_all              // Files linking cell IDs and Cre lines-based cell types labels for all cells
 |         |    └── cre_lines.csv         // File linking cell IDs and Cre lines-based cell types labels for all cells
+|         |
+|         ├──  Electrophys_feature_plots                	// Electrophysiological feature plots over the NSS clusters
+|         |    ├── AP_Patch_seq.pdf				// AP half-width plot
+|         |    ├── avg_ISI_Patch_seq.pdf		        // Average ISI plots
+|         |    ├── ficurve_Patch_seq.pdf		        // f-I curve slope plot
+|         |    ├── th_I_clus_Patch_seq.pdf		        // Current threshold plot
+|         |    ├── th_I_clus_puntini_Patch_seq.pdf		// Current threshold between celltypes plot
+|         |    └── medians.csv 					// Table of medians values for all the electrophysiological features over the NSS cliusters
 |         |
 |         ├── MISC                               // miscellaneous files supporting intermediate analysis steps
 |         |    ├── feature_analysis.csv          // File supporting feature analysis
