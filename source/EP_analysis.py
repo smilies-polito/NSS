@@ -975,7 +975,7 @@ if __name__=='__main__':
     if (len(sys.argv)!=3):
         print("Wrong number of arguments! Format is: EP_analysis.py [dataset_type] [number_of_clusters] ")
     dataset_type=sys.argv[1]
-    if isdigit(sys.argv[2]):
+    if sys.argv[2].isdigit():
         number_of_clusters=int(sys.argv[2])
     else:
         #will set number_of_clusters = max(silhouette), but here first set it to -1 as flag

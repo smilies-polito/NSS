@@ -49,7 +49,7 @@ Stage: build
     # Install required R packages
     
     R --slave -e 'install.packages("BiocManager", repos="https:/cloud.r-project.org")'
-    R --slave -e 'BiocManager::install(version = "3.17")'
+    R --slave -e 'BiocManager::install(version = "3.18")'
     R --slave -e 'install.packages(c("data.table", "readsparse", "aricode", "dplyr", "tidyr", "ggplot2", "stringr", "patchwork"))'
     R --slave -e 'BiocManager::install("Seurat")'
 
@@ -70,28 +70,16 @@ Stage: build
     
 %runscript
     #!/bin/sh
-    echo $1
-    cd source
-    if [ $1 = "HardValidation" ]; then    
-        echo "Performing hard validation on PatchSeqDataset with NSS optmail clustering cardinality (k=3)"
-        echo "Starting EP analysis..."
-        python3 EP_analysis.py PatchSeqDataset default
-        echo "Starting transcriptomic analysis..."
-        Rscript transcriptomic_analysis.r 3
-        
-        echo "Starting gene ontology enrichment analysis..."
-        Rscript GO_enrichment_analysis.r
-    fi
-    
-    if [ $1 = "SoftValidation" ]; then    
-        echo "Performing soft validation on PatchClampDataset with NSS optimal clustering cardinality (k=2)"
-        echo "Starting analysis..."
-        python3 EP_analysis.py PatchClampDataset default
-    
-    fi
-    
-    
-    
-    
-    
-    
+    cd source    
+    echo "Performing analysis on PatchSeqDataset with NSS optimal clustering cardinality"
+    echo "Starting EP analysis..."
+    python3 EP_analysis.py PatchSeqDataset default
+    echo "Starting transcriptomic analysis..."
+    Rscript transcriptomic_analysis.r 3
+    Rscript Electrophysiological_plots.r
+    echo "Starting gene ontology enrichment analysis..."
+    Rscript GO_enrichment_analysis.r
+    echo "Performing analysis on PatchClampDataset with NSS optimal clustering cardinality"
+    echo "Starting analysis..."
+    python3 EP_analysis.py PatchClampDataset default
+    Rscript Electrophysiological_plots.r
