@@ -319,6 +319,8 @@ singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.si
 |    |         ├── histograms_feature_distributions_up_down_ratio.png                    // UpDown_ratio feature distribution histograms (Figure 4, bottom left)
 |    |         ├── histograms_feature_distributions_dv_deep.png                          // dv_deep feature distribution histograms (Figure 4, bottom right)
 |    |         ├── silhouette.png
+|    |         ├── correlation_matrix_k2.png                                             // Spearman’s correlation matrix of NSS features to clustering label for k=2
+|    |         ├── correlation_matrix_k3.png                                             // Spearman’s correlation matrix of NSS features to clustering label for k=3
 |    |         ├── KDE_plot_k2_AP_halfwidth.png                                          // KDE plots of the distribution of feature AP_halfwidth for k=2 
 |    |         ├── KDE_plot_k2_Height.png                                                // KDE plots of the distribution of feature Height for k=2
 |    |         ├── KDE_plot_k2_Down_width.png                                            // KDE plots of the distribution of feature Down_width for k=2 
