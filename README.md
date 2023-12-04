@@ -236,27 +236,45 @@ singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.si
 |    |         ├── histograms_feature_distributions_dv_ratio.png                         // dv_ratio feature distribution histograms (Figure 4, top right)
 |    |         ├── histograms_feature_distributions_up_down_ratio.png                    // UpDown_ratio feature distribution histograms (Figure 4, bottom left)
 |    |         ├── histograms_feature_distributions_dv_deep.png                          // dv_deep feature distribution histograms (Figure 4, bottom right)
-|    |         ├── silhouette.png                                                        // Silhouette plot for the identification of optimal number of clusters (Figure 5)
-|    |         ├── NSS_embedding_NSS_labels_k3.html                                      // Interactive file showing NSS labels on NSS embedding for k=2 (Figure 6, left)
-|    |         ├── NSS_embedding_NSS_labels_k2.html                                      // Interactive file showing NSS labels on NSS embedding for k=3 (Figure 6, right)
-|    |         ├── correlation_matrix_k2.png                                             // Spearman’s correlation matrix of NSS features to clustering label for k=2 (Figure 7, top)
-|    |         ├── correlation_matrix_k3.png                                             // Spearman’s correlation matrix of NSS features to clustering label for k=3 (Figure 7, bottom)
-|    |         ├── KDE_plot_k2_slope_deep.png                                            // KDE plots of the distribution of features slope_deep for k=2 (Figure 8, bottom left)
-|    |         ├── KDE_plot_k2_dv_ratio.png                                              // KDE plots of the distribution of features slope_deep and dv_ratio for k=2 (Figure 8, bottom right)
-|    |         ├── KDE_plot_k3_slope_deep.png                                            // KDE plots of the distribution of features slope_deep for k=3 (Figure 8, top left)
-|    |         ├── KDE_plot_k3_dv_ratio.png                                              // KDE plots of the distribution of features slope_deep and dv_ratio for k=3 (Figure 8, top right)
-|    |         ├── bar_plots_mean_accuracy_decrease.png                                  //  Mean accuracy decrease in the cluster label prediction done by RF model when shuffling values of NSS feature (Figure 9)
-|    |         ├── transcriptomic_embedding_marker_expression.pdf                        // Cell type markers expression levels on transcriptomic embedding (Figure 11)
-|    |         ├── transcriptomic_embedding_transcriptomic_labels.pdf                    // Transcriptional labels provided by PatchSeqDataset metadata on transcriptomic embedding (Figure 12)
-|    |         ├── transcriptomic_embedding_NSS_labels_k3.pdf                            // NSS labels on transcriptomic embedding for k=2 (Figure 13, left)
-|    |         ├── transcriptomic_embedding_NSS_labels_k2.pdf                            // NSS labels on transcriptomic embedding for k=2 (Figure 13, right)
-|    |         ├── transcriptomic_embedding_transcriptomic_labels_Sst_subset.pdf         // Transcriptional labels provided by PatchSeqDataset metadata on transcriptomic embedding of the Sst subset (Figure 14, left)
-|    |         ├── transcriptomic_embedding_NSS_labels_k3_Sst_subset.pdf                 // NSS labels for k=3 on transcriptomic embedding of the Sst subset (Figure 14, right)
+|    |         ├── silhouette.png                                                        // Silhouette plot for the identification of optimal number of clusters 
+|    |         ├── NSS_embedding_NSS_labels_k3.html                                      // Interactive file showing NSS labels on NSS embedding for k=2 (Figure 4, top)
+|    |         ├── NSS_embedding_NSS_labels_k2.html                                      // Interactive file showing NSS labels on NSS embedding for k=3 (Figure 4, top)
+|    |         ├── correlation_matrix_k2.png                                             // Spearman’s correlation matrix of NSS features to clustering label for k=2 (Figure 9)
+|    |         ├── correlation_matrix_k3.png                                             // Spearman’s correlation matrix of NSS features to clustering label for k=3 (Figure 8)
+|    |         ├── KDE_plot_k2_AP_halfwidth.png                                          // KDE plots of the distribution of feature AP_halfwidth for k=2 
+|    |         ├── KDE_plot_k2_Height.png                                                // KDE plots of the distribution of feature Height for k=2
+|    |         ├── KDE_plot_k2_Down_width.png                                            // KDE plots of the distribution of feature Down_width for k=2 
+|    |         ├── KDE_plot_k2_UpDown_ratio.png                                          // KDE plots of the distribution of feature UpDown_ratio for k=2
+|    |         ├── KDE_plot_k2_slope_deep.png                                            // KDE plots of the distribution of features slope_deep for k=2
+|    |         ├── KDE_plot_k2_UpDown_width.png                                          // KDE plots of the distribution of features UpDown_width for k=2
+|    |         ├── KDE_plot_k2_Width.png                                                 // KDE plots of the distribution of feature Width for k=2
+|    |         ├── KDE_plot_k2_dv_deep.png                                               // KDE plots of the distribution of features dv_deep for k=2
+|    |         ├── KDE_plot_k2_dv_thr.png                                                // KDE plots of the distribution of feature dv_thr for k=2
+|    |         ├── KDE_plot_k2_dv_ratio.png                                              // KDE plots of the distribution of feature dv_ratio for k=2
+|    |         ├── KDE_plot_k3_AP_halfwidth.png                                          // KDE plots of the distribution of feature AP_halfwidth for k=3 
+|    |         ├── KDE_plot_k3_Height.png                                                // KDE plots of the distribution of feature Height for k=3
+|    |         ├── KDE_plot_k3_Down_width.png                                            // KDE plots of the distribution of feature Down_width for k=3
+|    |         ├── KDE_plot_k3_UpDown_ratio.png                                          // KDE plots of the distribution of feature UpDown_ratio for k=3
+|    |         ├── KDE_plot_k3_slope_deep.png                                            // KDE plots of the distribution of features slope_deep for k=3
+|    |         ├── KDE_plot_k3_UpDown_width.png                                          // KDE plots of the distribution of features UpDown_width for k=3
+|    |         ├── KDE_plot_k3_Width.png                                                 // KDE plots of the distribution of feature Width for k=3
+|    |         ├── KDE_plot_k3_dv_deep.png                                               // KDE plots of the distribution of features dv_deep for k=3
+|    |         ├── KDE_plot_k3_dv_thr.png                                                // KDE plots of the distribution of feature dv_thr for k=3
+|    |         ├── KDE_plot_k3_dv_ratio.png                                              // KDE plots of the distribution of feature dv_ratio for k=3
+|    |         ├── bar_plots_mean_accuracy_decrease.png                                  //  Mean accuracy decrease in the cluster label prediction done by RF model when shuffling values of NSS feature 
+|    |         ├── transcriptomic_embedding_marker_expression.pdf                        // Cell type markers expression levels on transcriptomic embedding 
+|    |         ├── transcriptomic_embedding_transcriptomic_labels.pdf                    // Transcriptional labels provided by PatchSeqDataset metadata on transcriptomic embedding
+|    |         ├── transcriptomic_embedding_NSS_labels_k3.pdf                            // NSS labels on transcriptomic embedding for k=2 (Figure 4, top)
+|    |         ├── transcriptomic_embedding_NSS_labels_k2.pdf                            // NSS labels on transcriptomic embedding for k=2 (Figure 4, top)
+|    |         ├── transcriptomic_embedding_transcriptomic_labels_Sst_subset.pdf         // Transcriptional labels provided by PatchSeqDataset metadata on transcriptomic embedding of the Sst subset (Figure 6, left)
+|    |         ├── transcriptomic_embedding_NSS_labels_k3_Sst_subset.pdf                 // NSS labels for k=3 on transcriptomic embedding of the Sst subset (Figure 6, right)
 |    |         ├── GO_biological_plot.pdf                                                // Gene ontology enrichment analysis plot (downloaded from http://bioinformatics.sdstate.edu/go/, GO Biological Process) (Figure 15, top)
 |    |         ├── GO_molecular_plot.pdf                                                 // Gene ontology enrichment analysis plot (downloaded from http://bioinformatics.sdstate.edu/go/, GO Molecular Function) (Figure 15, middle)
 |    |         ├── GO_cellular_plot.pdf                                                  // Gene ontology enrichment analysis plot (downloaded from http://bioinformatics.sdstate.edu/go/, GO Cellular Component) (Figure 15, bottom)
-|    |         ├── transcriptomic_Kcnc2_violin_plot.pdf                                  // Violin plots showing the Kcnc2 gene expression levels distributions across cells in each NSS cluster with k=3 (Figure 16, third row)
-|    |         └── transcriptomic_Kcnn2_violin_plot.pdf                                  // Violin plots showing the Kcnn2 gene expression levels distributions across cells in each NSS cluster with k=3 (Figure 16, fourth row)
+|    |         ├── transcriptomic_Kcnc2_violin_plot_k2.pdf                                  // Violin plots showing the Kcnc2 gene expression levels distributions across cells in each NSS cluster with k=2
+|    |         ├── transcriptomic_Kcnn2_violin_plot_k2.pdf                                  // Violin plots showing the Kcnn2 gene expression levels distributions across cells in each NSS cluster with k=2 
+|    |         ├── transcriptomic_Kcnc2_violin_plot_k3.pdf                                  // Violin plots showing the Kcnc2 gene expression levels distributions across cells in each NSS cluster with k=3 (Figure 14, first row)
+|    |         └── transcriptomic_Kcnn2_violin_plot_k3.pdf                                  // Violin plots showing the Kcnn2 gene expression levels distributions across cells in each NSS cluster with k=3 (Figure 14, second row)
 |    |
 |    |    
 |    └── PatchClampDataset                     // Output files and images for the PatchClampDataset
@@ -292,10 +310,35 @@ singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.si
 |         |    └── lines_k3_cl2_type.csv         // File supporting Cre lines-based cell types analysis for NSS cluster EC2 with k=3
 |         |
 |         └── IMAGES                                              // Images generated by the analysis 
-|              ├── NSS_embedding_Cre_lines_labels_k2.html         // Interactive file showing Transcriptional labels provided by PatchSeqDataset metadata on NSS embedding (Figure 17, top center)
-|              ├── NSS_embedding_Cre_lines_labels_k3.html         // Interactive file showing Transcriptional labels provided by PatchSeqDataset metadata on NSS embedding (Figure 17, top center)
-|              ├── NSS_embedding_NSS_labels_k3.html               // Interactive file showing NSS labels on NSS embedding for k=3 (Figure 17, bottom left)
-|              └── NSS_embedding_NSS_labels_k2.html               // Interactive file showing NSS labels on NSS embedding for k=2 (Figure 17, bottom right)
+|              ├── NSS_embedding_Cre_lines_labels_k2.html         // Interactive file showing Transcriptional labels provided by PatchSeqDataset metadata on NSS embedding 
+|              ├── NSS_embedding_Cre_lines_labels_k3.html         // Interactive file showing Transcriptional labels provided by PatchSeqDataset metadata on NSS embedding
+|              ├── NSS_embedding_NSS_labels_k3.html               // Interactive file showing NSS labels on NSS embedding for k=3 
+|              ├── NSS_embedding_NSS_labels_k2.html               // Interactive file showing NSS labels on NSS embedding for k=2 (Figure 4, bottom top)
+|    |         ├── histograms_feature_distributions_slope_deep.png                       // Slope_deep feature distribution histograms (Figure 4, top left)
+|    |         ├── histograms_feature_distributions_dv_ratio.png                         // dv_ratio feature distribution histograms (Figure 4, top right)
+|    |         ├── histograms_feature_distributions_up_down_ratio.png                    // UpDown_ratio feature distribution histograms (Figure 4, bottom left)
+|    |         ├── histograms_feature_distributions_dv_deep.png                          // dv_deep feature distribution histograms (Figure 4, bottom right)
+|    |         ├── silhouette.png
+|    |         ├── KDE_plot_k2_AP_halfwidth.png                                          // KDE plots of the distribution of feature AP_halfwidth for k=2 
+|    |         ├── KDE_plot_k2_Height.png                                                // KDE plots of the distribution of feature Height for k=2
+|    |         ├── KDE_plot_k2_Down_width.png                                            // KDE plots of the distribution of feature Down_width for k=2 
+|    |         ├── KDE_plot_k2_UpDown_ratio.png                                          // KDE plots of the distribution of feature UpDown_ratio for k=2
+|    |         ├── KDE_plot_k2_slope_deep.png                                            // KDE plots of the distribution of features slope_deep for k=2
+|    |         ├── KDE_plot_k2_UpDown_width.png                                          // KDE plots of the distribution of features UpDown_width for k=2
+|    |         ├── KDE_plot_k2_Width.png                                                 // KDE plots of the distribution of feature Width for k=2
+|    |         ├── KDE_plot_k2_dv_deep.png                                               // KDE plots of the distribution of features dv_deep for k=2
+|    |         ├── KDE_plot_k2_dv_thr.png                                                // KDE plots of the distribution of feature dv_thr for k=2
+|    |         ├── KDE_plot_k2_dv_ratio.png                                              // KDE plots of the distribution of feature dv_ratio for k=2
+|    |         ├── KDE_plot_k3_AP_halfwidth.png                                          // KDE plots of the distribution of feature AP_halfwidth for k=3 
+|    |         ├── KDE_plot_k3_Height.png                                                // KDE plots of the distribution of feature Height for k=3
+|    |         ├── KDE_plot_k3_Down_width.png                                            // KDE plots of the distribution of feature Down_width for k=3
+|    |         ├── KDE_plot_k3_UpDown_ratio.png                                          // KDE plots of the distribution of feature UpDown_ratio for k=3
+|    |         ├── KDE_plot_k3_slope_deep.png                                            // KDE plots of the distribution of features slope_deep for k=3
+|    |         ├── KDE_plot_k3_UpDown_width.png                                          // KDE plots of the distribution of features UpDown_width for k=3
+|    |         ├── KDE_plot_k3_Width.png                                                 // KDE plots of the distribution of feature Width for k=3
+|    |         ├── KDE_plot_k3_dv_deep.png                                               // KDE plots of the distribution of features dv_deep for k=3
+|    |         ├── KDE_plot_k3_dv_thr.png                                                // KDE plots of the distribution of feature dv_thr for k=3
+|    |         └── KDE_plot_k3_dv_ratio.png                                              // KDE plots of the distribution of feature dv_ratio for k=3                                                       // Silhouette plot for the identification of optimal 
 |
 |    
 └── README.md                                                     // This README file          
