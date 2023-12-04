@@ -314,33 +314,33 @@ singularity run --no-home --bind  /local/path/to/NSS:/local/path/to/home/ NSS.si
 |              ├── NSS_embedding_Cre_lines_labels_k3.html         // Interactive file showing Transcriptional labels provided by PatchSeqDataset metadata on NSS embedding
 |              ├── NSS_embedding_NSS_labels_k3.html               // Interactive file showing NSS labels on NSS embedding for k=3 
 |              ├── NSS_embedding_NSS_labels_k2.html               // Interactive file showing NSS labels on NSS embedding for k=2 (Figure 4, bottom top)
-|    |         ├── histograms_feature_distributions_slope_deep.png                       // Slope_deep feature distribution histograms (Figure 4, top left)
-|    |         ├── histograms_feature_distributions_dv_ratio.png                         // dv_ratio feature distribution histograms (Figure 4, top right)
-|    |         ├── histograms_feature_distributions_up_down_ratio.png                    // UpDown_ratio feature distribution histograms (Figure 4, bottom left)
-|    |         ├── histograms_feature_distributions_dv_deep.png                          // dv_deep feature distribution histograms (Figure 4, bottom right)
-|    |         ├── silhouette.png
-|    |         ├── correlation_matrix_k2.png                                             // Spearman’s correlation matrix of NSS features to clustering label for k=2
-|    |         ├── correlation_matrix_k3.png                                             // Spearman’s correlation matrix of NSS features to clustering label for k=3
-|    |         ├── KDE_plot_k2_AP_halfwidth.png                                          // KDE plots of the distribution of feature AP_halfwidth for k=2 
-|    |         ├── KDE_plot_k2_Height.png                                                // KDE plots of the distribution of feature Height for k=2
-|    |         ├── KDE_plot_k2_Down_width.png                                            // KDE plots of the distribution of feature Down_width for k=2 
-|    |         ├── KDE_plot_k2_UpDown_ratio.png                                          // KDE plots of the distribution of feature UpDown_ratio for k=2
-|    |         ├── KDE_plot_k2_slope_deep.png                                            // KDE plots of the distribution of features slope_deep for k=2
-|    |         ├── KDE_plot_k2_UpDown_width.png                                          // KDE plots of the distribution of features UpDown_width for k=2
-|    |         ├── KDE_plot_k2_Width.png                                                 // KDE plots of the distribution of feature Width for k=2
-|    |         ├── KDE_plot_k2_dv_deep.png                                               // KDE plots of the distribution of features dv_deep for k=2
-|    |         ├── KDE_plot_k2_dv_thr.png                                                // KDE plots of the distribution of feature dv_thr for k=2
-|    |         ├── KDE_plot_k2_dv_ratio.png                                              // KDE plots of the distribution of feature dv_ratio for k=2
-|    |         ├── KDE_plot_k3_AP_halfwidth.png                                          // KDE plots of the distribution of feature AP_halfwidth for k=3 
-|    |         ├── KDE_plot_k3_Height.png                                                // KDE plots of the distribution of feature Height for k=3
-|    |         ├── KDE_plot_k3_Down_width.png                                            // KDE plots of the distribution of feature Down_width for k=3
-|    |         ├── KDE_plot_k3_UpDown_ratio.png                                          // KDE plots of the distribution of feature UpDown_ratio for k=3
-|    |         ├── KDE_plot_k3_slope_deep.png                                            // KDE plots of the distribution of features slope_deep for k=3
-|    |         ├── KDE_plot_k3_UpDown_width.png                                          // KDE plots of the distribution of features UpDown_width for k=3
-|    |         ├── KDE_plot_k3_Width.png                                                 // KDE plots of the distribution of feature Width for k=3
-|    |         ├── KDE_plot_k3_dv_deep.png                                               // KDE plots of the distribution of features dv_deep for k=3
-|    |         ├── KDE_plot_k3_dv_thr.png                                                // KDE plots of the distribution of feature dv_thr for k=3
-|    |         └── KDE_plot_k3_dv_ratio.png                                              // KDE plots of the distribution of feature dv_ratio for k=3                                                       // Silhouette plot for the identification of optimal 
+|              ├── histograms_feature_distributions_slope_deep.png                       // Slope_deep feature distribution histograms (Figure 4, top left)
+|              ├── histograms_feature_distributions_dv_ratio.png                         // dv_ratio feature distribution histograms (Figure 4, top right)
+|              ├── histograms_feature_distributions_up_down_ratio.png                    // UpDown_ratio feature distribution histograms (Figure 4, bottom left)
+|              ├── histograms_feature_distributions_dv_deep.png                          // dv_deep feature distribution histograms (Figure 4, bottom right)
+|              ├── silhouette.png
+|              ├── correlation_matrix_k2.png                                             // Spearman’s correlation matrix of NSS features to clustering label for k=2
+|              ├── correlation_matrix_k3.png                                             // Spearman’s correlation matrix of NSS features to clustering label for k=3
+|              ├── KDE_plot_k2_AP_halfwidth.png                                          // KDE plots of the distribution of feature AP_halfwidth for k=2 
+|              ├── KDE_plot_k2_Height.png                                                // KDE plots of the distribution of feature Height for k=2
+|              ├── KDE_plot_k2_Down_width.png                                            // KDE plots of the distribution of feature Down_width for k=2 
+|              ├── KDE_plot_k2_UpDown_ratio.png                                          // KDE plots of the distribution of feature UpDown_ratio for k=2
+|              ├── KDE_plot_k2_slope_deep.png                                            // KDE plots of the distribution of features slope_deep for k=2
+|              ├── KDE_plot_k2_UpDown_width.png                                          // KDE plots of the distribution of features UpDown_width for k=2
+|              ├── KDE_plot_k2_Width.png                                                 // KDE plots of the distribution of feature Width for k=2
+|              ├── KDE_plot_k2_dv_deep.png                                               // KDE plots of the distribution of features dv_deep for k=2
+|              ├── KDE_plot_k2_dv_thr.png                                                // KDE plots of the distribution of feature dv_thr for k=2
+|              ├── KDE_plot_k2_dv_ratio.png                                              // KDE plots of the distribution of feature dv_ratio for k=2
+|              ├── KDE_plot_k3_AP_halfwidth.png                                          // KDE plots of the distribution of feature AP_halfwidth for k=3 
+|              ├── KDE_plot_k3_Height.png                                                // KDE plots of the distribution of feature Height for k=3
+|              ├── KDE_plot_k3_Down_width.png                                            // KDE plots of the distribution of feature Down_width for k=3
+|              ├── KDE_plot_k3_UpDown_ratio.png                                          // KDE plots of the distribution of feature UpDown_ratio for k=3
+|              ├── KDE_plot_k3_slope_deep.png                                            // KDE plots of the distribution of features slope_deep for k=3
+|              ├── KDE_plot_k3_UpDown_width.png                                          // KDE plots of the distribution of features UpDown_width for k=3
+|              ├── KDE_plot_k3_Width.png                                                 // KDE plots of the distribution of feature Width for k=3
+|              ├── KDE_plot_k3_dv_deep.png                                               // KDE plots of the distribution of features dv_deep for k=3
+|              ├── KDE_plot_k3_dv_thr.png                                                // KDE plots of the distribution of feature dv_thr for k=3
+|              └── KDE_plot_k3_dv_ratio.png                                              // KDE plots of the distribution of feature dv_ratio for k=3                                                       // Silhouette plot for the identification of optimal 
 |
 |    
 └── README.md                                                     // This README file          
